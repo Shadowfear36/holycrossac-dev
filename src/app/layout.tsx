@@ -32,6 +32,8 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: `${site.name} is an Anglo-Catholic parish in the ${site.diocese.name} of the ${site.province.name}. Sunday worship at 9:30 a.m., 828 O Street, Sanger, CA.`,
+  authors: [{ name: "Rhodai", url: "https://www.rhodai.ai" }],
+  creator: "Rhodai",
   // Share images come from src/app/opengraph-image.jpg & twitter-image.jpg (see scripts/make-brand-images.py)
   openGraph: {
     siteName: site.name,

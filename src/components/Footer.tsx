@@ -79,7 +79,19 @@ export default function Footer() {
             ))}
             <Link href="/give/" className="hover:text-gold-light">Give</Link>
           </nav>
-          <p>© {new Date().getFullYear()} {site.name}</p>
+          <p className="text-center md:text-right">
+            © {new Date().getFullYear()} {site.name}
+            <span className="mx-2 text-parchment/30">·</span>
+            Website by{" "}
+            <a
+              href="https://www.rhodai.ai"
+              target="_blank"
+              rel="noopener"
+              className="text-gold-light underline decoration-gold/40 underline-offset-2 hover:decoration-gold-light"
+            >
+              Rhodai
+            </a>
+          </p>
         </div>
       </div>
     </footer>
