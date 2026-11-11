@@ -11,7 +11,16 @@ export default function About() {
 
   return (
     <>
-      <PageHero eyebrow="About Us" title={aboutIntro.heading} photo="hero-about" photoHint="Church interior" photoPosition="50% 40%" caption="Holy Cross and Emmanuel clergy" />
+      <PageHero
+        eyebrow="About Us"
+        title={aboutIntro.heading}
+        photo="hero-about"
+        photoHint="Church interior"
+        // Title sits low; the crop keeps the clergy's faces in the open space above it at every width
+        titleLow
+        photoClassName="object-[50%_60%]"
+        caption="Holy Cross and Emmanuel clergy"
+      />
 
       <section className="mx-auto grid max-w-6xl items-start gap-14 px-6 py-20 md:grid-cols-5">
         <div className="prose-church drop-cap text-lg md:col-span-3">
