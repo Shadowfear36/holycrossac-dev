@@ -13,8 +13,15 @@ npm run build      # outputs static site to ./out
 ## Editing content
 
 - **Church info, service times, clergy, vestry, events, links:** `src/content/site.ts`
-- **Photos:** drop files in `public/photos/` (see `public/photos/README.md` for names)
+- **Photos:** page photos are in `public/photos/` (see its README); the full captioned library is in `photos/`
+- **Site icon & link-preview card:** `python scripts/make-brand-images.py` (needs Python + Pillow) regenerates them
 - See `CONTENT-NEEDED.md` for what the parish still needs to supply. Nothing on the site is invented; gaps show a "Content needed" box.
+
+## Motion & interactivity
+
+- **Home banner:** `src/components/HeroCross3D.tsx`. The parish emblem in real-time 3D (plain WebGL, no library). Drag to spin; falls back to the flat emblem without WebGL.
+- **First-visit intro (home page):** the 3D cross starts alone in the middle of the screen, then glides into place as the page fades in. Script in `layout.tsx`, timeline in `HeroCross3D.tsx`, styles under "Intro" in `globals.css`. Once per visit; a CSS fail-safe reveals the page after 5s no matter what.
+- Both respect the visitor's "reduce motion" setting.
 
 ## Deploy (Cloudflare Pages)
 

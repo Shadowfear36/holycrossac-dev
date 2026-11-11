@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Worship" };
 export default function Worship() {
   return (
     <>
-      <PageHero eyebrow="Worship" title="Please join us for Sunday worship!" photo="hero-worship" photoHint="Sunday worship" />
+      <PageHero eyebrow="Worship" title="Please join us for Sunday worship!" photo="hero-worship" photoHint="Sunday worship" photoPosition="50% 30%" />
 
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-5">
         <div className="md:col-span-3">
@@ -44,7 +44,17 @@ export default function Worship() {
               </a>
             </div>
           </div>
-          <Photo name="worship-livestream" alt="" hint="Sunday worship" className="aspect-video w-full" />
+          <figure>
+            <Photo
+              name="worship-livestream"
+              alt="Clergy of the ACNA Diocese of San Joaquin"
+              hint="Sunday worship"
+              className="aspect-[3/2] w-full"
+            />
+            <figcaption className="mt-3 text-center font-display text-base italic text-parchment/70">
+              Clergy of the ACNA Diocese of San Joaquin
+            </figcaption>
+          </figure>
         </div>
       </section>
     </>

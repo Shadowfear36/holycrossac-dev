@@ -6,10 +6,13 @@ type Props = {
   intro?: string;
   photo?: string;
   photoHint?: string;
+  photoPosition?: string;
+  /** Caption for the background photo, shown small in the corner */
+  caption?: string;
 };
 
 /** Banner used at the top of interior pages. */
-export default function PageHero({ eyebrow, title, intro, photo, photoHint }: Props) {
+export default function PageHero({ eyebrow, title, intro, photo, photoHint, photoPosition, caption }: Props) {
   return (
     <section className="relative isolate overflow-hidden bg-ink">
       {photo && (
@@ -17,6 +20,7 @@ export default function PageHero({ eyebrow, title, intro, photo, photoHint }: Pr
           name={photo}
           alt=""
           hint={photoHint}
+          position={photoPosition}
           priority
           className="absolute inset-0 -z-10 h-full w-full opacity-45"
         />
@@ -27,6 +31,9 @@ export default function PageHero({ eyebrow, title, intro, photo, photoHint }: Pr
         <h1 className="max-w-3xl text-5xl text-parchment md:text-6xl">{title}</h1>
         {intro && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-parchment/85">{intro}</p>}
       </div>
+      {photo && caption && (
+        <p className="absolute bottom-3 right-4 max-w-[60%] text-right text-xs italic text-parchment/70">{caption}</p>
+      )}
     </section>
   );
 }

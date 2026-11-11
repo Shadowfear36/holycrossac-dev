@@ -16,7 +16,7 @@ export default function Clergy() {
         <div className="mt-8 space-y-16">
           {clergy.map((c) => (
             <article key={c.name} className="grid items-start gap-10 md:grid-cols-3">
-              <Photo name={c.photo} alt={c.name} hint={`Portrait of ${c.name}`} className="aspect-[4/5] w-full" />
+              <Photo name={c.photo} alt={c.name} hint={`Portrait of ${c.name}`} position="50% 20%" className="aspect-[4/5] w-full" />
               <div className="md:col-span-2">
                 <h2 className="text-4xl">{c.name}</h2>
                 {c.role && <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-oxblood">{c.role}</p>}

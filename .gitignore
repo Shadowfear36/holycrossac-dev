@@ -42,3 +42,6 @@ next-env.d.ts
 
 # cloudflare
 .wrangler/
+
+# full-size original photo uploads (local only; web copies live in photos/library and public/photos)
+/photos/originals/

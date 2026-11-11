@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-4">
         <div className="md:col-span-1">
           <div className="flex items-center gap-3">
-            <CrossMark className="h-10 w-10 text-gold" />
+            <CrossMark className="h-10 w-10" />
             <span className="font-display text-2xl text-parchment">Holy Cross</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed">

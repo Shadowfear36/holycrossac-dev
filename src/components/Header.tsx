@@ -40,7 +40,7 @@ export default function Header() {
 
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="group flex items-center gap-3">
-          <CrossMark className="h-10 w-10 text-oxblood transition-colors group-hover:text-gold" />
+          <CrossMark className="h-10 w-10 transition-transform duration-300 group-hover:rotate-[8deg] group-hover:scale-105" />
           <span className="leading-tight">
             <span className="block font-display text-2xl text-ink">Holy Cross</span>
             <span className="block text-[0.65rem] uppercase tracking-[0.25em] text-stone">

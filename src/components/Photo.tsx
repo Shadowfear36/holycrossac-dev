@@ -20,13 +20,15 @@ type Props = {
   /** Shown on the placeholder so you know what photo belongs here */
   hint?: string;
   priority?: boolean;
+  /** CSS object-position, to keep faces in frame when cropped (e.g. "50% 30%") */
+  position?: string;
 };
 
 /**
  * Drop a file into /public/photos named `<name>.jpg` and it appears automatically.
  * Until then, a labelled placeholder is rendered.
  */
-export default function Photo({ name, alt, className = "", hint, priority }: Props) {
+export default function Photo({ name, alt, className = "", hint, priority, position }: Props) {
   const src = findPhoto(name);
 
   if (src) {
@@ -36,6 +38,7 @@ export default function Photo({ name, alt, className = "", hint, priority }: Pro
         src={src}
         alt={alt}
         className={`object-cover ${className}`}
+        style={position ? { objectPosition: position } : undefined}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : undefined}
       />

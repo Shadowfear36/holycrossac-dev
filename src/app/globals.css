@@ -146,3 +146,59 @@ h4 {
     text-underline-offset: 3px;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Intro (first visit to the home page)                                */
+/* The 3D cross starts alone in the middle; HeroCross3D removes .intro  */
+/* from <html> as it glides into place, and everything below fades in.  */
+/* Fail-safe: if script never runs, everything appears after 5s.       */
+/* ------------------------------------------------------------------ */
+.intro-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  background: var(--color-ink);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+}
+html.intro { overflow: hidden; }
+html.intro .intro-veil {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+  animation: intro-failsafe-veil 0.8s ease 5s forwards;
+}
+
+/* The banner sits above the veil during the intro, and stays there while the veil fades */
+.hero {
+  z-index: 1;
+  transition: z-index 0s linear 1s;
+}
+html.intro .hero { z-index: 70; transition: none; }
+
+/* Glow behind the cross follows it to the right on wide screens */
+.hero-glow { transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1); }
+@media (min-width: 1024px) {
+  .hero-glow { transform: translateX(22%); }
+}
+html.intro .hero-glow { transform: none; transition: none; }
+
+/* Lettering and buttons rise in, one after another */
+.intro-hide {
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.intro .intro-hide {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: none;
+  animation: intro-failsafe-show 0.6s ease 5s forwards;
+}
+.intro-d1 { transition-delay: 0.25s; }
+.intro-d2 { transition-delay: 0.4s; }
+.intro-d3 { transition-delay: 0.6s; }
+.intro-d4 { transition-delay: 0.8s; }
+
+@keyframes intro-failsafe-veil { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-failsafe-show { to { opacity: 1; transform: none; } }

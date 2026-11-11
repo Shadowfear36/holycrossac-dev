@@ -17,7 +17,7 @@ Anything missing shows a dashed **"Content needed"** box. Here is the full list:
 - [ ] **Giving:** online link (if any), how to make checks payable, where to mail
 - [ ] **Vestry Documents:** the PDF files (Bishop's Reports, Parish Profile, Financial Reports,
       Vestry Minutes, Agendas, Annual Meetings, Articles and Bylaws, Meeting Packets), and whether they should be public
-- [ ] **Photos:** real photos of the parish (church, people, Fr. Dave). The images pulled from the old site are an icon and two Pexels stock photos. See `public/photos/README.md`
+- [x] **Photos:** received from Fr. Dave and placed (see `photos/README.md`). Still nice to have: a photo of the church building and the inside of the nave, for the About page banner (currently the low-res icon from the old site).
 
 ## Design choices to approve (not facts, but please confirm)
 - [ ] The Archbishop Fisher quote (from the old About page) is used as the featured quote on the home page.

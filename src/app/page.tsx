@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeroCross3D from "@/components/HeroCross3D";
 import Photo from "@/components/Photo";
 import ServiceCard from "@/components/ServiceCard";
 import { events, site } from "@/content/site";
@@ -8,7 +9,7 @@ import { formatDate } from "@/lib/dates";
 // Mirrors the three columns on the old home page: Who We Are, Our Worship Services, Resources
 const tiles = [
   { title: "Who We Are", href: "/about/", photo: "tile-about", hint: "Church interior or exterior" },
-  { title: "Our Worship Services", href: "/worship/", photo: "tile-worship", hint: "Sunday worship" },
+  { title: "Our Worship Services", href: "/worship/", photo: "tile-worship", hint: "Sunday worship", position: "50% 40%" },
   { title: "Resources", href: "/resources/", photo: "tile-resources", hint: "Prayer book / altar" },
 ];
 
@@ -18,27 +19,24 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[78vh] overflow-hidden bg-ink">
-        <Photo
-          name="hero"
-          alt="A crucifix resting on an open Bible"
-          hint="Wide shot of the church, inside or out"
-          priority
-          className="absolute inset-0 -z-10 h-full w-full opacity-60"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/85 via-ink/50 to-transparent" />
-        <div className="mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-center px-6 py-24">
-          <p className="eyebrow text-gold-light">Welcome to</p>
-          <h1 className="mt-3 max-w-3xl text-6xl text-parchment md:text-8xl">
+      <section className="hero relative isolate overflow-hidden bg-ink lg:min-h-[78vh]">
+        {/* Candle-glow backdrop behind the cross (moves with it during the intro) */}
+        <div className="hero-glow absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_150px,rgba(138,28,36,0.55),transparent_55%)] lg:bg-[radial-gradient(ellipse_at_50%_45%,rgba(138,28,36,0.5),transparent_60%)]" />
+        <HeroCross3D className="hero-canvas absolute inset-0 -z-10" />
+        {/* Lettering ignores the pointer so the cross behind it can be dragged; links/buttons re-enable it.
+            Phones/tablets: lettering starts below the cross (which rests at the top). Desktop: cross sits to the right. */}
+        <div className="pointer-events-none mx-auto flex max-w-6xl flex-col justify-start px-6 pb-16 pt-[276px] sm:pt-[326px] lg:min-h-[78vh] lg:justify-center lg:py-24 [&_a]:pointer-events-auto">
+          <p className="eyebrow intro-hide intro-d1 text-gold-light">Welcome to</p>
+          <h1 className="intro-hide intro-d2 mt-3 max-w-3xl text-6xl text-parchment md:text-8xl">
             Holy Cross
             <span className="block text-4xl italic text-parchment/85 md:text-5xl">
               Anglican Church
             </span>
           </h1>
-          <p className="mt-6 max-w-xl font-display text-2xl italic leading-relaxed text-parchment/90">
+          <p className="intro-hide intro-d3 mt-6 max-w-xl font-display text-2xl italic leading-relaxed text-parchment/90">
             {site.vision}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="intro-hide intro-d4 mt-10 flex flex-wrap gap-4">
             <Link
               href="/worship/"
               className="bg-gold px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-gold-light"
@@ -95,6 +93,7 @@ export default function Home() {
                   name={t.photo}
                   alt=""
                   hint={t.hint}
+                  position={"position" in t ? t.position : undefined}
                   className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

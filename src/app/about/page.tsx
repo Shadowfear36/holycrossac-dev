@@ -11,7 +11,7 @@ export default function About() {
 
   return (
     <>
-      <PageHero eyebrow="About Us" title={aboutIntro.heading} photo="hero-about" photoHint="Church interior" />
+      <PageHero eyebrow="About Us" title={aboutIntro.heading} photo="hero-about" photoHint="Church interior" photoPosition="50% 40%" caption="Holy Cross and Emmanuel clergy" />
 
       <section className="mx-auto grid max-w-6xl items-start gap-14 px-6 py-20 md:grid-cols-5">
         <div className="prose-church drop-cap text-lg md:col-span-3">
@@ -19,12 +19,17 @@ export default function About() {
             <p key={i}>{p}</p>
           ))}
         </div>
-        <Photo
-          name="about-church"
-          alt="Holy Cross Anglican Church"
-          hint="Church building (needs a real photo of the parish)"
-          className="aspect-[4/5] w-full md:col-span-2"
-        />
+        <figure className="md:col-span-2">
+          <Photo
+            name="about-church"
+            alt="Fr. Dave and Dcn. (ret.) Melinda lighting the Paschal Candle"
+            hint="Parish photo"
+            className="aspect-[4/5] w-full"
+          />
+          <figcaption className="mt-3 text-center font-display text-base italic text-stone">
+            Fr. Dave &amp; Dcn. (ret.) Melinda lighting the Paschal Candle
+          </figcaption>
+        </figure>
       </section>
 
       {sections.map((s, i) => (
