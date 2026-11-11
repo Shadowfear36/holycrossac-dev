@@ -1,26 +1,148 @@
 @import "tailwindcss";
 
+/*
+ * Holy Cross design tokens
+ * Parchment ground, ink text, oxblood (rubric red) and liturgical gold accents.
+ * Type set to evoke an early printed Bible / Book of Common Prayer.
+ */
+@theme {
+  --color-parchment: #f4ecd8;
+  --color-parchment-deep: #eadcbf;
+  --color-ink: #1f1b18;
+  --color-ink-soft: #4a423b;
+  --color-oxblood: #8a1c24;
+  --color-oxblood-dark: #5c1219;
+  --color-gold: #b08d3c;
+  --color-gold-light: #d8c08a;
+  --color-stone: #8b8178;
+
+  --font-display: var(--font-fell), "IM Fell English", Georgia, serif;
+  --font-smallcaps: var(--font-fell-sc), "IM Fell English SC", Georgia, serif;
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Bible-paper texture: fine grain + soft mottling (SVG noise) over warm ivory,
+ * with slightly darker, aged edges.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .32 0 0 0 0 .18 .22 0 0 0 -.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --paper-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .22 .16 0 0 0 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-parchment);
+  background-image:
+    radial-gradient(ellipse at center, transparent 55%, rgb(120 85 35 / 0.12) 100%),
+    var(--paper-grain),
+    var(--paper-mottle);
+  background-attachment: fixed, scroll, scroll;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+:target {
+  scroll-margin-top: 7rem;
+}
+
+/* Custom classes live in the components layer so Tailwind utilities (e.g. text-gold-light) can override them. */
+@layer components {
+  /* Same paper on panels/cards so nothing reads as flat white */
+  .paper {
+    background-color: var(--color-parchment);
+    background-image: var(--paper-grain), var(--paper-mottle);
+  }
+  .paper-deep {
+    background-color: var(--color-parchment-deep);
+    background-image: var(--paper-grain), var(--paper-mottle);
+  }
+
+  /* Rubric: small-caps label in red, above headings */
+  .eyebrow {
+    font-family: var(--font-smallcaps);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    color: var(--color-oxblood);
+  }
+
+  /* Ornamental rule: ——— ✠ ——— */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-gold);
+  }
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  /* Illuminated initial on the first paragraph of a passage */
+  .drop-cap > p:first-of-type::first-letter,
+  .illuminated::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 4.4em;
+    line-height: 0.78;
+    padding: 0.08em 0.1em 0 0;
+    color: var(--color-oxblood);
+    font-style: normal;
+  }
+  .illuminated::first-letter {
+    font-size: 2.7em;
+    line-height: 0.8;
+  }
+  /* On dark/red backgrounds, the initial is gilded */
+  .illuminated-gold::first-letter {
+    color: var(--color-gold-light);
+  }
+
+  /* Scripture-style quotation: Fell italic, no quotation marks, illuminated initial */
+  .scripture {
+    font-family: var(--font-display);
+    font-style: italic;
+    line-height: 1.45;
+  }
+  .scripture-cite {
+    font-family: var(--font-smallcaps);
+    letter-spacing: 0.06em;
+  }
+
+  .prose-church p {
+    margin-bottom: 1.1em;
+    line-height: 1.75;
+    color: var(--color-ink-soft);
+  }
+  .prose-church h2 {
+    font-size: 2rem;
+    margin: 2.5rem 0 1rem;
+    color: var(--color-ink);
+  }
+  .prose-church h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .prose-church a {
+    color: var(--color-oxblood);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
