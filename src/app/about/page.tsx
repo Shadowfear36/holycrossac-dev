@@ -15,11 +15,11 @@ export default function About() {
         eyebrow="About Us"
         title={aboutIntro.heading}
         photo="hero-about"
-        photoHint="Church interior"
-        // Title sits low; the crop keeps the clergy's faces in the open space above it at every width
-        titleLow
-        photoClassName="object-[50%_60%]"
-        caption="Holy Cross and Emmanuel clergy"
+        photoHint="Holy Cross members"
+        // Group photo: shown on its own across the top, title below, so no one is covered
+        stacked
+        photoPosition="50% 55%"
+        caption="Holy Cross members"
       />
 
       <section className="mx-auto grid max-w-6xl items-start gap-14 px-6 py-20 md:grid-cols-5">

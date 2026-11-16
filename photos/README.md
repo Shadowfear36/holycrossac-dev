@@ -20,6 +20,7 @@ Photos actually shown on the site are copied into `public/photos/` under slot na
 | worship-service-clergy.jpg | (no caption; photo sent by Fr. Dave) |
 | church-front.jpg | Church front, 828 O Street (requested by Fr. Dave for the home page) |
 | church-interior.jpg | Church interior (requested by Fr. Dave for the worship section) |
+| holy-cross-members.jpg | Holy Cross members (group photo on the church steps; includes children) |
 | one-child-margyecy.jpg | Margyecy, sponsored through the One Child ministry |
 | bible-study-naomi-teaching.jpg | (no caption; photo sent by Fr. Dave) |
 | holy-cross-banner-group.jpg | (no caption; photo sent by Fr. Dave) |

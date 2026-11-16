@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/dates";
 
 // Mirrors the three columns on the old home page: Who We Are, Our Worship Services, Resources
 const tiles = [
-  { title: "Who We Are", href: "/about/", photo: "tile-about", hint: "Church interior or exterior" },
+  { title: "Who We Are", href: "/about/", photo: "tile-about", hint: "Holy Cross members" },
   { title: "Our Worship Services", href: "/worship/", photo: "tile-worship", hint: "Sunday worship", position: "50% 40%" },
   { title: "Resources", href: "/resources/", photo: "tile-resources", hint: "Prayer book / altar" },
 ];
