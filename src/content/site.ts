@@ -36,6 +36,17 @@ export const site = {
     livestream: "https://www.facebook.com/HolyCrossSanger/videos/",
   },
 
+  // When the Sunday service is livestreamed on Facebook (Pacific time). Drives the
+  // "Live now / Next livestream" banner. day: 0 = Sunday.
+  livestreamSchedule: {
+    day: 0,
+    hour: 9,
+    minute: 30,
+    showLiveFromMinutesBefore: 10,
+    liveForMinutes: 90,
+    timeZone: "America/Los_Angeles",
+  },
+
   // NEEDED: how the parish receives gifts (online link, mail, etc.)
   givingUrl: "",
 
@@ -100,7 +111,14 @@ export const nav: NavItem[] = [
 
 // Outreach ministries, as described by Fr. Dave (Nov 2026).
 // `photo` is a file name in public/photos/ (no extension); the card shows it once the file exists.
-export type Ministry = { id: string; name: string; description: string; photo: string };
+export type Ministry = {
+  id: string;
+  name: string;
+  description: string;
+  photo: string;
+  /** Optional link to a partner organization */
+  link?: { label: string; href: string };
+};
 export const outreach: Ministry[] = [
   {
     id: "one-child",
@@ -117,8 +135,9 @@ export const outreach: Ministry[] = [
   {
     id: "daughters-of-the-holy-cross",
     name: "Daughters of the Holy Cross",
-    description: "They pray for people and provide food and bag lunches for the Hope Sanger charity.",
+    description: "They pray for people and provide food and bag lunches for the HOPE Sanger charity.",
     photo: "outreach-daughters-of-the-holy-cross",
+    link: { label: "Visit HOPE Sanger", href: "https://hopesanger.org/" },
   },
   {
     id: "outreach-bible-study",

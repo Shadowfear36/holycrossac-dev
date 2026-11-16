@@ -4,7 +4,7 @@ Nothing on this site is invented. Text comes word for word from the old holycros
 Anything missing shows a dashed **"Content needed"** box. Here is the full list:
 
 ## Confirm
-- [ ] **Phone number.** Old site footer says 559-721-2027; its contact page says 559-255-4883. Which is current?
+- [ ] **Phone number.** Old site footer says 559-721-2027; its contact page and the parish Facebook page say (559) 255-4883. Which is current?
 - [ ] **Mailing name.** Old contact page says "Church of the Holy Cross, P.O. Box 425". Still correct?
 
 ## Needed
@@ -21,7 +21,7 @@ Anything missing shows a dashed **"Content needed"** box. Here is the full list:
 
 ## Outreach ministries (added Nov 2026)
 - [ ] Photos for each ministry (they appear automatically; names in `public/photos/README.md`)
-- [ ] Confirm spellings: "Margyecy" (One Child), "Diocese of Kigezi, Uganda", "Hope Sanger" (charity name)
+- [ ] Confirm spellings: "Margyecy" (One Child), "Diocese of Kigezi, Uganda" ("HOPE Sanger" confirmed from hopesanger.org)
 
 ## Design choices to approve (not facts, but please confirm)
 - [x] Featured quote on the home page: Luke 9:23 (KJV), chosen by Fr. Dave (replaced the Archbishop Fisher quote).

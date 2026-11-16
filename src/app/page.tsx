@@ -1,4 +1,6 @@
 import Link from "next/link";
+import FacebookFeed from "@/components/FacebookFeed";
+import LiveBanner from "@/components/LiveBanner";
 import Photo from "@/components/Photo";
 import ServiceCard from "@/components/ServiceCard";
 import { events, outreach, site } from "@/content/site";
@@ -89,6 +91,42 @@ export default function Home() {
           </blockquote>
           <p className="scripture-cite mt-8 text-lg text-gold-light">{featuredQuote.attribution}</p>
           <div className="ornament mx-auto mt-8 max-w-xs text-gold-light">❦</div>
+        </div>
+      </section>
+
+      {/* Facebook: livestream banner + latest posts (livestreams appear there as posts) */}
+      <section className="mx-auto grid max-w-6xl items-start gap-12 px-6 py-24 lg:grid-cols-2">
+        <div className="lg:sticky lg:top-40">
+          <p className="eyebrow">Online</p>
+          <h2 className="mt-3 text-4xl md:text-5xl">Holy Cross on Facebook</h2>
+          <p className="mt-4 text-lg text-ink-soft">Our services are live streamed.</p>
+          <div className="mt-8">
+            <LiveBanner tone="light" />
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={site.social.facebook}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 bg-[#1877F2] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#166fe0]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden fill="currentColor">
+                <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
+              </svg>
+              Follow on Facebook
+            </a>
+            <a
+              href={site.social.youtube}
+              target="_blank"
+              rel="noopener"
+              className="border border-ink/30 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-ink-soft hover:border-oxblood hover:text-oxblood"
+            >
+              YouTube
+            </a>
+          </div>
+        </div>
+        <div data-no-reveal>
+          <FacebookFeed height={680} />
         </div>
       </section>
 

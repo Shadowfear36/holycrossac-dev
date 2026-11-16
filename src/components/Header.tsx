@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { nav, site } from "@/content/site";
 import CrossMark from "./CrossMark";
+import { useLiveStatus } from "./LiveBanner";
 
 export default function Header() {
   const pathname = usePathname();
@@ -12,6 +13,7 @@ export default function Header() {
   const [openOn, setOpenOn] = useState<string | null>(null);
   const open = openOn === pathname;
   const setOpen = (fn: (o: boolean) => boolean) => setOpenOn(fn(open) ? pathname : null);
+  const live = useLiveStatus(); // "Live now" during the Sunday livestream (by schedule)
 
   return (
     <header className="sticky top-0 z-50 border-b border-gold/20 paper backdrop-blur">
@@ -22,9 +24,24 @@ export default function Header() {
             Sundays 9:30 a.m. · {site.address.street}, {site.address.city}
           </span>
           <div className="flex items-center gap-5">
-            <a href={site.social.livestream} target="_blank" rel="noreferrer" className="hover:text-gold-light">
-              Watch Live
-            </a>
+            {live?.live ? (
+              <a
+                href={site.social.livestream}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 rounded-full bg-parchment px-2.5 py-0.5 font-semibold text-oxblood"
+              >
+                <span className="relative flex h-2 w-2" aria-hidden>
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-oxblood/60" />
+                  <span className="relative h-2 w-2 rounded-full bg-oxblood" />
+                </span>
+                Live now
+              </a>
+            ) : (
+              <a href={site.social.livestream} target="_blank" rel="noreferrer" className="hover:text-gold-light">
+                Watch Live
+              </a>
+            )}
             <a href={site.social.facebook} target="_blank" rel="noreferrer" className="hover:text-gold-light">
               Facebook
             </a>

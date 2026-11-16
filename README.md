@@ -21,6 +21,11 @@ npm run build      # outputs static site to ./out
 
 - The church on O Street (`public/photos/hero-church.jpg`). Photo on the right on desktop, across the top on phones.
 
+## Facebook & livestream
+
+- **Latest posts:** `src/components/FacebookFeed.tsx` embeds Facebook's official Page plugin (no login or API key). Livestreams appear there as posts. It only loads when scrolled near.
+- **Live now / next livestream:** `src/components/LiveBanner.tsx`, driven by `livestreamSchedule` in `src/content/site.ts` (Sundays 9:30 a.m. Pacific). The header's "Watch Live" link becomes a pulsing "Live now" during that window. This is schedule-based; real-time detection would need a Facebook developer key from a page admin.
+
 ## Deploy (Cloudflare Pages)
 
 Connect the Git repo in the Cloudflare dashboard (Workers & Pages → Create → Pages → Connect to Git):

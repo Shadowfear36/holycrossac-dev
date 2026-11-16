@@ -26,6 +26,16 @@ export default function Outreach() {
                 <div className="ornament max-w-[8rem] justify-start text-gold [&::before]:hidden">✠</div>
                 <h2 className="mt-2 text-4xl">{m.name}</h2>
                 <p className="mt-3 text-lg leading-relaxed text-ink-soft">{m.description}</p>
+                {m.link && (
+                  <a
+                    href={m.link.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="mt-4 inline-block font-semibold text-oxblood underline decoration-gold/50 underline-offset-4 hover:decoration-oxblood"
+                  >
+                    {m.link.label} ↗
+                  </a>
+                )}
               </div>
             </li>
           ))}

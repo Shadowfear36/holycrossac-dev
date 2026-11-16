@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import LiveBanner from "@/components/LiveBanner";
 import Photo from "@/components/Photo";
 import ServiceCard from "@/components/ServiceCard";
 import { site } from "@/content/site";
@@ -42,7 +43,10 @@ export default function Worship() {
           <div>
             <p className="eyebrow text-gold-light">Watch online</p>
             <h2 className="mt-3 text-4xl md:text-5xl">Our services are live streamed.</h2>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8">
+              <LiveBanner tone="dark" />
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
               <a href={site.social.livestream} className="bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-wider text-ink hover:bg-gold-light">
                 Our Worship Services
               </a>

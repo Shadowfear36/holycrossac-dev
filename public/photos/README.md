@@ -5,7 +5,7 @@ Each file here fills a spot on a page. To change one, replace the file with the 
 
 | File               | Where it shows                     | Photo                                          |
 |--------------------|------------------------------------|------------------------------------------------|
-| tile-about         | Home "Who We Are" card             | Fr. Dave and others at the Holy Cross banner   |
+| tile-about         | Home "Who We Are" card             | Holy Cross and Emmanuel clergy at the church (Fr. Dave's choice) |
 | tile-worship       | Home "Our Worship Services" card   | Paschal Candle lighting                        |
 | tile-resources     | Home "Resources" card              | Bible study (Naomi slide)                      |
 | hero-about         | About page banner                  | Holy Cross and Emmanuel clergy (with caption)  |
