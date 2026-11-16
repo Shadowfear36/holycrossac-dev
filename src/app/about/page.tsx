@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Photo from "@/components/Photo";
 import { site } from "@/content/site";
-import { aboutIntro, believing, fisherQuote, sacramental, spiritService, worshiping } from "@/content/about";
+import { aboutIntro, believing, sacramental, spiritService, worshiping } from "@/content/about";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -51,12 +51,6 @@ export default function About() {
                 <p key={j}>{p}</p>
               ))}
             </div>
-            {s.id === "beliefs" && (
-              <blockquote className="mt-10 border-y border-gold/40 py-8">
-                <p className="scripture illuminated text-2xl md:text-3xl">{fisherQuote.text}</p>
-                <footer className="scripture-cite mt-5 text-right text-stone">{fisherQuote.attribution}</footer>
-              </blockquote>
-            )}
           </div>
         </section>
       ))}

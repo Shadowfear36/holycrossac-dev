@@ -25,8 +25,15 @@ export default function Worship() {
             We are a Sacramental Church →
           </Link>
         </div>
-        <div className="md:col-span-2">
+        <div className="space-y-8 md:col-span-2">
           <ServiceCard />
+          {/* Photo requested by Fr. Dave */}
+          <Photo
+            name="worship-interior"
+            alt="Inside the church, looking toward the altar"
+            optional
+            className="aspect-[3/2] w-full shadow-xl shadow-ink/10"
+          />
         </div>
       </section>
 

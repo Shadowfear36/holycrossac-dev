@@ -12,7 +12,7 @@ export default function Footer() {
             <span className="font-display text-2xl text-parchment">Holy Cross</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed">
-            An Anglo-Catholic parish of the{" "}
+            An Anglican parish of the{" "}
             <a href={site.diocese.url} className="underline decoration-gold/50 underline-offset-2 hover:text-gold-light">
               {site.diocese.name}
             </a>{" "}

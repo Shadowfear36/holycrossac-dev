@@ -90,11 +90,48 @@ export const nav: NavItem[] = [
     label: "Connect",
     href: "/events/",
     children: [
+      { label: "Outreach Ministries", href: "/outreach/" },
       { label: "Calendar of Events", href: "/events/" },
       { label: "Resources", href: "/resources/" },
     ],
   },
   { label: "Contact", href: "/contact/" },
+];
+
+// Outreach ministries, as described by Fr. Dave (Nov 2026).
+// `photo` is a file name in public/photos/ (no extension); the card shows it once the file exists.
+export type Ministry = { id: string; name: string; description: string; photo: string };
+export const outreach: Ministry[] = [
+  {
+    id: "one-child",
+    name: "One Child",
+    description: "We sponsor Margyecy from the Diocese of Kigezi, Uganda.",
+    photo: "outreach-one-child",
+  },
+  {
+    id: "angel-ministry",
+    name: "Angel Ministry",
+    description: "We help one of our own in need.",
+    photo: "outreach-angel-ministry",
+  },
+  {
+    id: "daughters-of-the-holy-cross",
+    name: "Daughters of the Holy Cross",
+    description: "They pray for people and provide food and bag lunches for the Hope Sanger charity.",
+    photo: "outreach-daughters-of-the-holy-cross",
+  },
+  {
+    id: "outreach-bible-study",
+    name: "Outreach Bible Study",
+    description: "Bible study with visits to assisted living facilities.",
+    photo: "outreach-bible-study",
+  },
+  {
+    id: "family-support",
+    name: "Family Support",
+    description: "Delivering food to assist a family who is not part of our parish.",
+    photo: "outreach-family-support",
+  },
 ];
 
 // Old site, resources page (same links, same labels, same thumbnail images)

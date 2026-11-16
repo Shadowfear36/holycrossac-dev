@@ -1,12 +1,13 @@
 /**
- * Verbatim text from the old holycrossac.org "About Us" page.
+ * Verbatim text from the old holycrossac.org "About Us" page, except:
+ *  - "Anglo-Catholic parish" changed to "Anglican parish" at Fr. Dave's request (Nov 2026)
  * Spelling is kept exactly as on the original (e.g. "Apostle's"); edit only if the parish wishes.
  */
 
 export const aboutIntro = {
   heading: "We are Part of God's One Holy Catholic and Apostolic Church",
   paragraphs: [
-    "Holy Cross Anglican Church is the combined congregation of The Church of the Good Shepherd (Reedley) and Saint Mary's Anglican Church (Fresno). Our two congregations merged on July 1, 2018 when we relocated from Reedley and Fresno to Sanger, CA. We are an Anglo-Catholic parish in the Anglican Diocese of San Joaquin (\"DSJ\") of the Anglican Church in North America (\"ACNA\").",
+    "Holy Cross Anglican Church is the combined congregation of The Church of the Good Shepherd (Reedley) and Saint Mary's Anglican Church (Fresno). Our two congregations merged on July 1, 2018 when we relocated from Reedley and Fresno to Sanger, CA. We are an Anglican parish in the Anglican Diocese of San Joaquin (\"DSJ\") of the Anglican Church in North America (\"ACNA\").",
     "Our church is committed to biblical teaching and preaching, to the truths expressed in the Apostle's, Nicene, and Athanasian Creeds, to traditional and orthodox worship as contained in the Book of Common Prayer, and to upholding the historic threefold ministry of bishops, priests, and deacons ordained in Apostolic Succession.",
     "We are a part of Christ's Holy, Catholic, and Apostolic Church, born some 2,000 years ago. More specifically, we are a part of the Anglican family of churches which had its origins in the British Isles in the first century and later carried around the world wherever English speaking people were found. Through faithful witness, carried out in our corporate life and the lives of our individual members, we strive to proclaim the Christian faith in all its fullness: That Jesus Christ is our Lord and Savior who suffered, died, and rose to bring us God's gift of salvation - eternal life!",
   ],
@@ -20,9 +21,13 @@ export const believing = {
   ],
 };
 
-export const fisherQuote = {
-  text: "We have no doctrine of our own we only possess the Catholic doctrine of the Catholic Church enshrined in the Creeds of the Church, and those Creeds we hold without addition or diminution.",
-  attribution: "The Right Rev. Geoffrey Fisher, Archbishop of Canterbury 1945–1961",
+/**
+ * Featured quote (home page band). Chosen by Fr. Dave in place of the old site's
+ * Archbishop Fisher quote. Exact King James Version text.
+ */
+export const featuredQuote = {
+  text: "If any man will come after me, let him deny himself, and take up his cross daily, and follow me.",
+  attribution: "Luke 9:23",
 };
 
 export const worshiping = {

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import HeroCross3D from "@/components/HeroCross3D";
 import Photo from "@/components/Photo";
 import ServiceCard from "@/components/ServiceCard";
-import { events, site } from "@/content/site";
-import { aboutIntro, fisherQuote } from "@/content/about";
+import { events, outreach, site } from "@/content/site";
+import { aboutIntro, featuredQuote } from "@/content/about";
 import { formatDate } from "@/lib/dates";
 
 // Mirrors the three columns on the old home page: Who We Are, Our Worship Services, Resources
@@ -19,24 +18,34 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="hero relative isolate overflow-hidden bg-ink lg:min-h-[78vh]">
-        {/* Candle-glow backdrop behind the cross (moves with it during the intro) */}
-        <div className="hero-glow absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_50%_150px,rgba(138,28,36,0.55),transparent_55%)] lg:bg-[radial-gradient(ellipse_at_50%_45%,rgba(138,28,36,0.5),transparent_60%)]" />
-        <HeroCross3D className="hero-canvas absolute inset-0 -z-10" />
-        {/* Lettering ignores the pointer so the cross behind it can be dragged; links/buttons re-enable it.
-            Phones/tablets: lettering starts below the cross (which rests at the top). Desktop: cross sits to the right. */}
-        <div className="pointer-events-none mx-auto flex max-w-6xl flex-col justify-start px-6 pb-16 pt-[276px] sm:pt-[326px] lg:min-h-[78vh] lg:justify-center lg:py-24 [&_a]:pointer-events-auto">
-          <p className="eyebrow intro-hide intro-d1 text-gold-light">Welcome to</p>
-          <h1 className="intro-hide intro-d2 mt-3 max-w-3xl text-6xl text-parchment md:text-8xl">
+      <section className="hero relative isolate overflow-hidden bg-ink lg:min-h-[600px]">
+        {/* The church on O Street (photo requested by Fr. Dave).
+            Phones/tablets: photo across the top, lettering below. Desktop: photo on the right,
+            fading into the dark panel that holds the lettering. */}
+        <Photo
+          name="hero-church"
+          alt="Holy Cross Anglican Church, 828 O Street, Sanger"
+          priority
+          position="50% 55%"
+          // Desktop: the photo's own left edge fades to transparent, so it melts into the dark panel (no seam)
+          className="absolute inset-x-0 top-0 -z-20 h-[300px] w-full sm:h-[380px] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-full lg:w-[70%] lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_22%,black_48%)]"
+        />
+        {/* Phones/tablets: photo fades down into the dark panel under it */}
+        <div className="absolute inset-x-0 top-0 -z-10 h-[300px] bg-gradient-to-b from-ink/10 via-ink/25 to-ink sm:h-[380px] lg:hidden" />
+        {/* Desktop: bottom of the photo settles softly into the dark band */}
+        <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-ink from-0% via-ink/0 via-30% lg:block" />
+        <div className="mx-auto flex max-w-6xl flex-col justify-start px-6 pb-16 pt-[250px] sm:pt-[330px] lg:min-h-[600px] lg:justify-center lg:py-24">
+          <p className="eyebrow text-gold-light">Welcome to</p>
+          <h1 className="mt-3 max-w-3xl text-6xl text-parchment md:text-8xl">
             Holy Cross
             <span className="block text-4xl italic text-parchment/85 md:text-5xl">
               Anglican Church
             </span>
           </h1>
-          <p className="intro-hide intro-d3 mt-6 max-w-xl font-display text-2xl italic leading-relaxed text-parchment/90">
+          <p className="mt-6 max-w-xl font-display text-2xl italic leading-relaxed text-parchment/90">
             {site.vision}
           </p>
-          <div className="intro-hide intro-d4 mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/worship/"
               className="bg-gold px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-gold-light"
@@ -71,14 +80,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quote (from the old About page) */}
+      {/* Featured scripture (chosen by Fr. Dave) */}
       <section className="bg-oxblood text-parchment">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
           <div className="ornament mx-auto max-w-xs text-gold-light">✠</div>
           <blockquote className="scripture illuminated illuminated-gold mt-10 text-left text-3xl md:text-4xl">
-            {fisherQuote.text}
+            {featuredQuote.text}
           </blockquote>
-          <p className="scripture-cite mt-8 text-lg text-gold-light">{fisherQuote.attribution}</p>
+          <p className="scripture-cite mt-8 text-lg text-gold-light">{featuredQuote.attribution}</p>
           <div className="ornament mx-auto mt-8 max-w-xs text-gold-light">❦</div>
         </div>
       </section>
@@ -105,6 +114,44 @@ export default function Home() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Outreach ministries (descriptions from Fr. Dave) */}
+      <section className="paper-deep">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">Outreach</p>
+              <h2 className="mt-3 text-4xl md:text-5xl">Our Outreach Ministries</h2>
+            </div>
+            <Link href="/outreach/" className="font-semibold text-oxblood hover:underline">
+              All outreach ministries →
+            </Link>
+          </div>
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {outreach.map((m) => (
+              <li key={m.id}>
+                <Link
+                  href={`/outreach/#${m.id}`}
+                  className="group block h-full overflow-hidden border-t-2 border-gold paper transition-shadow hover:shadow-lg hover:shadow-ink/10"
+                >
+                  <div className="overflow-hidden">
+                    <Photo
+                      name={m.photo}
+                      alt=""
+                      optional
+                      className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl group-hover:text-oxblood">{m.name}</h3>
+                    <p className="mt-2 leading-relaxed text-ink-soft">{m.description}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

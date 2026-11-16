@@ -22,14 +22,17 @@ type Props = {
   priority?: boolean;
   /** CSS object-position, to keep faces in frame when cropped (e.g. "50% 30%") */
   position?: string;
+  /** If the file doesn't exist yet, render nothing instead of a placeholder */
+  optional?: boolean;
 };
 
 /**
  * Drop a file into /public/photos named `<name>.jpg` and it appears automatically.
  * Until then, a labelled placeholder is rendered.
  */
-export default function Photo({ name, alt, className = "", hint, priority, position }: Props) {
+export default function Photo({ name, alt, className = "", hint, priority, position, optional }: Props) {
   const src = findPhoto(name);
+  if (!src && optional) return null;
 
   if (src) {
     return (

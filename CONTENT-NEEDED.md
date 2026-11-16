@@ -19,6 +19,10 @@ Anything missing shows a dashed **"Content needed"** box. Here is the full list:
       Vestry Minutes, Agendas, Annual Meetings, Articles and Bylaws, Meeting Packets), and whether they should be public
 - [x] **Photos:** received from Fr. Dave and placed (see `photos/README.md`). Still nice to have: a photo of the church building and the inside of the nave, for the About page banner (currently the low-res icon from the old site).
 
+## Outreach ministries (added Nov 2026)
+- [ ] Photos for each ministry (they appear automatically; names in `public/photos/README.md`)
+- [ ] Confirm spellings: "Margyecy" (One Child), "Diocese of Kigezi, Uganda", "Hope Sanger" (charity name)
+
 ## Design choices to approve (not facts, but please confirm)
-- [ ] The Archbishop Fisher quote (from the old About page) is used as the featured quote on the home page.
+- [x] Featured quote on the home page: Luke 9:23 (KJV), chosen by Fr. Dave (replaced the Archbishop Fisher quote).
 - [ ] Section headings like "Welcome", "Visit us", "Watch online" are plain labels added for layout.
