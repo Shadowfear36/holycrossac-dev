@@ -27,6 +27,14 @@ export default function Clergy() {
                     ))}
                   </div>
                 )}
+                {c.source && (
+                  <p className="mt-4 text-sm text-stone">
+                    From the{" "}
+                    <a href={c.source.href} className="text-oxblood underline-offset-2 hover:underline">
+                      {c.source.label}
+                    </a>
+                  </p>
+                )}
               </div>
             </article>
           ))}
@@ -49,7 +57,7 @@ export default function Clergy() {
                     alt={v.name}
                     optional
                     position="50% 50%"
-                    className="aspect-square w-32 shrink-0 sm:w-36"
+                    className={`aspect-square w-32 shrink-0 sm:w-36 ${v.bio ? "" : "mb-5"}`}
                   />
                 )}
                 <div>

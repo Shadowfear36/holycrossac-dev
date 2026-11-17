@@ -11,6 +11,7 @@ export type GalleryEntry = { file: string; caption?: string };
 export const galleryOrder: GalleryEntry[] = [
   { file: "holy-cross-members", caption: "Holy Cross members" },
   { file: "fr-dave-with-dog", caption: "Blessing of the Animals" },
+  { file: "tim-lueth-at-altar" },
   {
     file: "field-trip-holy-monastery-dunlap",
     caption: "Holy Cross’ field trip to Holy Monastery of the Theotokos the Lifegiving Spring, Dunlap, CA",

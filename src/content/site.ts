@@ -79,9 +79,29 @@ export const services: ServiceTime[] = [
 ];
 
 // NEEDED: full name, title, bio, photo. "Fr. Dave" is all we have so far.
-export type Clergy = { name: string; credentials?: string; role: string; photo: string; bio: string[] };
+export type Clergy = {
+  name: string;
+  credentials?: string;
+  role: string;
+  photo: string;
+  bio: string[];
+  source?: { label: string; href: string };
+};
 // From Fr. Dave (Nov 2026), verbatim
 export const clergy: Clergy[] = [
+  {
+    // From the Anglican Diocese of San Joaquin website (Bishop & Staff page), verbatim, at Fr. Dave's
+    // request (Nov 2026); listed first per Fr. Dave. Photo: the diocese's portrait, unaltered.
+    name: "Bishop Eric Menees",
+    role: "Bishop of the Anglican Diocese of San Joaquin",
+    photo: "clergy-bishop-eric-menees",
+    bio: [
+      "Bishop Eric Menees was born in Compton, California on November 21, 1961 and is a tenth generation Los Angelino. Bishop Menees graduated from the General Theological Seminary with an M.Div and from Seabury Western Theological Seminary with a D.Min. Following his ordination Bishop Menees served Spanish language congregations in East Los Angeles and Santa Ana in the Diocese of Los Angeles. From there he was called to the Diocese of San Diego to be the chaplain at The Bishop’s School in La Jolla, California and later as vicar and then rector of Grace Church, San Marcos.",
+      "In 2011 by God’s grace Bishop Menees was elected the fifth bishop of San Joaquin succeeding Bishop John David Schofield. Bishop Menees serves as bishop for Caminemos Juntos the ACNA Spanish Language ministry support network, leads the Border Bishops’ Conference seeking to evangelize and plant churches in Mexico, is the ACNA representative to the Anglican Province of South America and the United States Conference of Catholic Bishops.",
+      "Bishop Menees is married to Florence Guadalupe and has two grown children, Milagro a registered nurse, and Sebastian a firefighter.",
+    ],
+    source: { label: "Anglican Diocese of San Joaquin", href: "https://www.dioceseofsanjoaquin.net/bishop--staff.html" },
+  },
   {
     name: "The Rev. David A. Peterson III",
     credentials: "MDiv, MHA, PBCC, LSSBB",
@@ -105,7 +125,7 @@ export type VestryMember = { name: string; role: string; bio?: string; photo?: s
 // From Fr. Dave (Nov 2026). Bios are the members' own words.
 export const vestry: VestryMember[] = [
   { name: "Beverly Worrell", role: "Senior Warden" },
-  { name: "Tim Lueth", role: "Junior Warden" },
+  { name: "Tim Lueth", role: "Junior Warden", photo: "vestry-tim-lueth" }, // photo from Fr. Dave (Nov 2026): cap lettering removed, background matched
   { name: "Cynthia Shaheen", role: "Secretary" },
   { name: "Sayre Miller", role: "Treasurer" },
   { name: "Robin Wood", role: "Outreach Coordinator" },
