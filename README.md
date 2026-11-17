@@ -23,6 +23,7 @@ npm run build      # outputs static site to ./out
 
 ## Facebook & livestream
 
+- **Latest YouTube videos:** `src/components/YouTubeLatest.tsx` embeds the channel's uploads playlist (newest first, updates itself; no API key). Channel ID is `youtubeChannelId` in `site.ts`.
 - **Latest posts:** `src/components/FacebookFeed.tsx` embeds Facebook's official Page plugin (no login or API key). Livestreams appear there as posts. It only loads when scrolled near.
 - **Live now / next livestream:** `src/components/LiveBanner.tsx`, driven by `livestreamSchedule` in `src/content/site.ts` (Sundays 9:30 a.m. Pacific). The header's "Watch Live" link becomes a pulsing "Live now" during that window. This is schedule-based; real-time detection would need a Facebook developer key from a page admin.
 
@@ -35,6 +36,11 @@ Connect the Git repo in the Cloudflare dashboard (Workers & Pages → Create →
 - Environment variable: `NODE_VERSION=22`
 
 Then add the custom domain `holycrossac.org` under the project's **Custom domains** tab.
+
+> **Keep church email working.** holycrossac.org's DNS is currently at Network Solutions (`ns1.aplus.net`), and its email
+> (email@holycrossac.org) runs on Network Solutions mail servers. If the domain's DNS moves to Cloudflare, copy these records
+> over exactly, or email stops: MX `mx1c40.carrierzone.com` (10), `mx2c40.carrierzone.com` (100), `mx3c40.carrierzone.com` (110),
+> and TXT `v=spf1 a mx include:spfc40.carrierzone.com include:verticalresponse.com ~all`.
 Old site URLs are redirected via `public/_redirects`.
 
 Or deploy from the CLI: `npm run build && npx wrangler pages deploy`.

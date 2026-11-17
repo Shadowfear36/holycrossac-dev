@@ -1,11 +1,12 @@
 import Link from "next/link";
 import FacebookFeed from "@/components/FacebookFeed";
+import YouTubeLatest from "@/components/YouTubeLatest";
 import LiveBanner from "@/components/LiveBanner";
 import Photo from "@/components/Photo";
+import { UpcomingEventsSection } from "@/components/UpcomingEvents";
 import ServiceCard from "@/components/ServiceCard";
-import { events, outreach, site } from "@/content/site";
+import { outreach, site } from "@/content/site";
 import { aboutIntro, featuredQuote } from "@/content/about";
-import { formatDate } from "@/lib/dates";
 
 // Mirrors the three columns on the old home page: Who We Are, Our Worship Services, Resources
 const tiles = [
@@ -15,7 +16,6 @@ const tiles = [
 ];
 
 export default function Home() {
-  const upcoming = [...events].sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
 
   return (
     <>
@@ -94,15 +94,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Facebook: livestream banner + latest posts (livestreams appear there as posts) */}
+      {/* Online: livestream banner, latest YouTube videos, latest Facebook posts (all update themselves) */}
       <section className="mx-auto grid max-w-6xl items-start gap-12 px-6 py-24 lg:grid-cols-2">
-        <div className="lg:sticky lg:top-40">
+        <div>
           <p className="eyebrow">Online</p>
-          <h2 className="mt-3 text-4xl md:text-5xl">Holy Cross on Facebook</h2>
+          <h2 className="mt-3 text-4xl md:text-5xl">Holy Cross Online</h2>
           <p className="mt-4 text-lg text-ink-soft">Our services are live streamed.</p>
           <div className="mt-8">
             <LiveBanner tone="light" />
           </div>
+
+          <div className="mt-10" data-no-reveal>
+            <div className="mb-3 flex items-baseline justify-between gap-3">
+              <h3 className="text-2xl">Latest on YouTube</h3>
+              <a href={site.social.youtube} target="_blank" rel="noopener" className="text-sm font-semibold text-oxblood hover:underline">
+                All videos ↗
+              </a>
+            </div>
+            <YouTubeLatest />
+          </div>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={site.social.facebook}
@@ -116,17 +127,21 @@ export default function Home() {
               Follow on Facebook
             </a>
             <a
-              href={site.social.youtube}
+              href={`${site.social.youtube}?sub_confirmation=1`}
               target="_blank"
               rel="noopener"
-              className="border border-ink/30 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-ink-soft hover:border-oxblood hover:text-oxblood"
+              className="inline-flex items-center gap-2 bg-[#FF0000] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#d90000]"
             >
-              YouTube
+              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden fill="currentColor">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
+              </svg>
+              Subscribe on YouTube
             </a>
           </div>
         </div>
         <div data-no-reveal>
-          <FacebookFeed height={680} />
+          <h3 className="mb-3 text-2xl">Latest on Facebook</h3>
+          <FacebookFeed height={720} />
         </div>
       </section>
 
@@ -193,41 +208,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Upcoming (only shown once real events are added) */}
-      {upcoming.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 pb-24">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Calendar</p>
-              <h2 className="mt-3 text-4xl md:text-5xl">Upcoming Events</h2>
-            </div>
-            <Link href="/events/" className="font-semibold text-oxblood hover:underline">
-              Full calendar →
-            </Link>
-          </div>
-          <ul className="mt-10 grid gap-6 md:grid-cols-3">
-            {upcoming.map((e) => {
-              const d = formatDate(e.date);
-              return (
-                <li key={e.date + e.title} className="flex gap-5 border-t-2 border-gold pt-5">
-                  <div className="text-center">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-stone">{d.month}</p>
-                    <p className="font-display text-5xl leading-none text-oxblood">{d.day}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl">{e.title}</h3>
-                    <p className="mt-1 text-sm text-stone">
-                      {d.weekday}
-                      {e.time ? ` · ${e.time}` : ""}
-                    </p>
-                    {e.description && <p className="mt-2 text-sm text-ink-soft">{e.description}</p>}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
+      {/* Upcoming events (past ones hide themselves) */}
+      <UpcomingEventsSection />
 
       {/* Visit / map */}
       <section className="grid md:grid-cols-2">

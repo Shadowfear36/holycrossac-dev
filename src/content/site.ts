@@ -27,12 +27,15 @@ export const site = {
   mailing: ["Church of the Holy Cross", "P.O. Box 425", "Sanger, CA 93657"],
   // Old site footer shows 559-721-2027; contact page body says 559-255-4883. NEEDS CONFIRMING.
   phone: "559-721-2027",
-  // Old site shows a broken address ("email.holycrossac.org"). NEEDED.
-  email: "",
+  // From Fr. Dave (Nov 2026). The old site showed it with a typo ("email.holycrossac.org").
+  email: "email@holycrossac.org",
 
   social: {
     facebook: "https://www.facebook.com/HolyCrossSanger",
     youtube: "https://www.youtube.com/@HolyCrossAnglicanChurch",
+    // Channel ID (from the channel page). Its "uploads" playlist is UU + the rest of the ID,
+    // which YouTube's embed player shows newest-first and keeps up to date by itself.
+    youtubeChannelId: "UCPZeGPTEcF1IEwmQbYWjDDg",
     livestream: "https://www.facebook.com/HolyCrossSanger/videos/",
   },
 
@@ -63,17 +66,48 @@ export const services: ServiceTime[] = [
 ];
 
 // NEEDED: full name, title, bio, photo. "Fr. Dave" is all we have so far.
-export const clergy: { name: string; role: string; photo: string; bio: string }[] = [
-  { name: "Fr. Dave", role: "", photo: "clergy-fr-dave", bio: "" },
+export type Clergy = { name: string; credentials?: string; role: string; photo: string; bio: string[] };
+// From Fr. Dave (Nov 2026), verbatim
+export const clergy: Clergy[] = [
+  {
+    name: "The Rev. David A. Peterson III",
+    credentials: "MDiv, MHA, PBCC, LSSBB",
+    role: "Rector",
+    photo: "clergy-fr-dave",
+    bio: [
+      "Father Dave has served as rector of Holy Cross Anglican Church for three and a half years. Before ordination, he spent many years in healthcare administration and business leadership. He holds a Master of Divinity from Nashotah House Theological Seminary. He serves on the diocesan Commission on Ministry and is a member of the diocesan ecclesiastical court. He is also a volunteer chaplain with Community Regional Medical Center and the Sanger Police Department. Father Dave is married and the father of two adult daughters. He welcomes you to Holy Cross.",
+    ],
+  },
 ];
 
 // NEEDED: vestry names and offices
-export const vestry: { name: string; role: string }[] = [];
+export type VestryMember = { name: string; role: string; bio?: string; photo?: string };
+// From Fr. Dave (Nov 2026). Bios are the members' own words.
+export const vestry: VestryMember[] = [
+  { name: "Beverly Worrell", role: "Senior Warden" },
+  { name: "Tim Lueth", role: "Junior Warden" },
+  { name: "Cynthia Shaheen", role: "Secretary" },
+  { name: "Sayre Miller", role: "Treasurer" },
+  { name: "Robin Wood", role: "Outreach Coordinator" },
+  {
+    name: "Charlene Rogde",
+    role: "Vestry Member",
+    photo: "vestry-charlene-rogde",
+    bio: "I am one of the newest catechumen and vestry members at the Holy Cross Anglican Church. I became a church member on September 13th, 2026. I also enjoy serving with the hospitality team, which provides refreshments after Sunday service.",
+  },
+];
 
 export type ParishEvent = { date: string; time?: string; title: string; description?: string };
 
 // NEEDED: real parish events (ISO dates, yyyy-mm-dd)
-export const events: ParishEvent[] = [];
+// From Fr. Dave (Nov 2026). Past events hide themselves automatically (see EventList).
+export const events: ParishEvent[] = [
+  { date: "2026-11-29", title: "Advent Begins" },
+  { date: "2026-12-06", title: "Lessons & Carols", description: "At Emmanuel Church Cathedral" },
+  { date: "2026-12-12", time: "2:00 – 4:30 p.m.", title: "Christmas Party" },
+  { date: "2026-12-24", time: "3:00 p.m.", title: "Christmas Eve Day Service" },
+  { date: "2026-12-27", title: "First Sunday of Christmas" },
+];
 
 export type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
 
@@ -95,6 +129,7 @@ export const nav: NavItem[] = [
       { label: "Sunday Worship", href: "/worship/" },
       { label: "Watch Online", href: "/worship/#livestream" },
       { label: "The Sacraments", href: "/about/#sacraments" },
+      { label: "The Daily Office", href: "/resources/#daily-office" },
     ],
   },
   {
@@ -162,7 +197,7 @@ export const resources: { group: string; links: ResourceLink[] }[] = [
       { label: "Our Worship Services", href: "https://www.facebook.com/HolyCrossSanger/videos/", image: "/images/worship-services.jpg", fit: "cover" },
       { label: "Visit us on YouTube", href: "https://www.youtube.com/@HolyCrossAnglicanChurch", image: "/images/jerusalem-cross.jpg", fit: "contain" },
       { label: "The Daily Office", href: "https://www.dailyoffice2019.com/", image: "/images/daily-office.jpg", fit: "cover" },
-      { label: "Liturgical Calendar", href: "https://liturgical-calendar.com/en/ACNA", image: "/images/bcp-pew-edition.jpg", fit: "contain" },
+      { label: "Liturgical Calendar", href: "https://www.dailyoffice2019.com/calendar", image: "/images/bcp-pew-edition.jpg", fit: "contain" },
     ],
   },
   {
@@ -185,3 +220,21 @@ export const vestryDocumentCategories = [
   "Articles and Bylaws",
   "Vestry Meeting Packets",
 ];
+
+// The Daily Office (dailyoffice2019.com), the parish's liturgical calendar (Fr. Dave, Nov 2026).
+// These links always open on today's office, so they never need updating.
+export const dailyOffice = {
+  site: "https://www.dailyoffice2019.com/",
+  calendar: "https://www.dailyoffice2019.com/calendar",
+  offices: [
+    { label: "Morning Prayer", href: "https://www.dailyoffice2019.com/office/morning_prayer" },
+    { label: "Midday Prayer", href: "https://www.dailyoffice2019.com/office/midday_prayer" },
+    { label: "Evening Prayer", href: "https://www.dailyoffice2019.com/office/evening_prayer" },
+    { label: "Compline", href: "https://www.dailyoffice2019.com/office/compline" },
+  ],
+  podcast: [
+    { label: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/the-daily-office-podcast/id1574821838" },
+    { label: "Spotify", href: "https://dailyofficepodcast.captivate.fm/spotify" },
+    { label: "RSS feed", href: "https://dailyofficepodcast.captivate.fm/rssfeed" },
+  ],
+};
