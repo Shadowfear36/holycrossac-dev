@@ -20,11 +20,13 @@ export default function Clergy() {
                 <p className="text-sm font-semibold uppercase tracking-wider text-oxblood">{c.role}</p>
                 <h2 className="mt-2 text-4xl">{c.name}</h2>
                 {c.credentials && <p className="mt-2 font-smallcaps text-lg tracking-wide text-stone">{c.credentials}</p>}
-                <div className="prose-church drop-cap mt-6 text-lg">
-                  {c.bio.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
+                {c.bio.length > 0 && (
+                  <div className="prose-church drop-cap mt-6 text-lg">
+                    {c.bio.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
+                )}
               </div>
             </article>
           ))}

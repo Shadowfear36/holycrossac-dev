@@ -78,6 +78,13 @@ export const clergy: Clergy[] = [
       "Father Dave has served as rector of Holy Cross Anglican Church for three and a half years. Before ordination, he spent many years in healthcare administration and business leadership. He holds a Master of Divinity from Nashotah House Theological Seminary. He serves on the diocesan Commission on Ministry and is a member of the diocesan ecclesiastical court. He is also a volunteer chaplain with Community Regional Medical Center and the Sanger Police Department. Father Dave is married and the father of two adult daughters. He welcomes you to Holy Cross.",
     ],
   },
+  {
+    // From Fr. Dave (Nov 2026). Background matched to Fr. Dave's headshot.
+    name: "Dcn. (ret.) Melinda Barrow",
+    role: "Deacon (Retired)",
+    photo: "clergy-melinda-barrow",
+    bio: [],
+  },
 ];
 
 // NEEDED: vestry names and offices

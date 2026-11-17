@@ -45,3 +45,6 @@ next-env.d.ts
 
 # full-size original photo uploads (local only; web copies live in photos/library and public/photos)
 /photos/originals/
+
+# local background-removal tool (scripts/match-portrait-background.py)
+/.venv-rembg/

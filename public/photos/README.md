@@ -14,6 +14,8 @@ Each file here fills a spot on a page. To change one, replace the file with the 
 | hero-worship       | Worship page banner                | Worship service, clergy reading                |
 | worship-livestream | Worship page, livestream section   | Clergy of the ACNA Diocese of San Joaquin      |
 | clergy-fr-dave     | Clergy page portrait               | Fr. Dave                                       |
+| clergy-melinda-barrow | Clergy page portrait           | Dcn. (ret.) Melinda Barrow (matched backdrop)  |
+| vestry-charlene-rogde | Vestry card                    | Charlene Rogde (matched backdrop)              |
 | hero-church        | Home page banner                   | Church front on O Street (from Fr. Dave)       |
 | worship-interior   | Worship page, beside service times | Church interior (from Fr. Dave)                |
 

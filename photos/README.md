@@ -20,7 +20,8 @@ Photos actually shown on the site are copied into `public/photos/` under slot na
 | worship-service-clergy.jpg | (no caption; photo sent by Fr. Dave) |
 | church-front.jpg | Church front, 828 O Street (requested by Fr. Dave for the home page) |
 | church-interior.jpg | Church interior (requested by Fr. Dave for the worship section) |
-| vestry-charlene-rogde.jpg | Charlene Rogde, vestry member |
+| clergy-melinda-barrow.jpg | Dcn. (ret.) Melinda Barrow (background matched to Fr. Dave's) |
+| vestry-charlene-rogde.jpg | Charlene Rogde, vestry member (background matched to Fr. Dave's) |
 | holy-cross-members.jpg | Holy Cross members (group photo on the church steps; includes children) |
 | one-child-margyecy.jpg | Margyecy, sponsored through the One Child ministry |
 | bible-study-naomi-teaching.jpg | (no caption; photo sent by Fr. Dave) |
@@ -46,3 +47,10 @@ Chosen to be symbolic (hands, Bible, food), not people presented as parishioners
 | stock-outreach-family-support.jpg | Family Support | https://unsplash.com/photos/4GLeChny4bU | Max Raber |
 
 To replace one with a real parish photo, overwrite the matching file in `public/photos/` (e.g. `outreach-angel-ministry.jpg`).
+
+## Clergy & vestry portraits: matching backgrounds
+
+At Fr. Dave's request (Nov 2026), clergy and vestry portraits share the same plain studio backdrop as his
+headshot. Run new portraits through `scripts/match-portrait-background.py` (see the setup notes at the top of
+that file). It changes only the background; the person is not edited. Frame them like Fr. Dave's
+(2:3, head and shoulders, shoulders running off the sides). Un-matched originals stay in `originals/`.
