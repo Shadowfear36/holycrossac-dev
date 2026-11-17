@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 
 export const dynamic = "force-static";
 
-const routes = ["", "new-here", "about", "clergy", "worship", "outreach", "events", "resources", "give", "contact"];
+const routes = ["", "new-here", "about", "clergy", "worship", "outreach", "parish-life", "events", "resources", "give", "contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((r) => ({

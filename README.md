@@ -14,6 +14,7 @@ npm run build      # outputs static site to ./out
 
 - **Church info, service times, clergy, vestry, events, links:** `src/content/site.ts`
 - **Photos:** page photos are in `public/photos/` (see its README); the full captioned library is in `photos/`
+- **Parish Life gallery:** drop a .jpg into `public/photos/gallery/` and it appears on /parish-life/ automatically; add a caption/order in `src/content/gallery.ts`
 - **Site icon & link-preview card:** `python scripts/make-brand-images.py` (needs Python + Pillow) regenerates them
 - See `CONTENT-NEEDED.md` for what the parish still needs to supply. Nothing on the site is invented; gaps show a "Content needed" box.
 
@@ -50,3 +51,7 @@ Or deploy from the CLI: `npm run build && npx wrangler pages deploy`.
 The contact form currently opens the visitor's email app (`mailto:`).
 To send directly, add a Pages Function at `functions/api/contact.ts` and POST the form to it
 (e.g. via Resend or Postmark), then update `src/components/ContactForm.tsx`.
+
+## Parish calendar (Google Calendar)
+
+Upcoming events can come straight from the parish Google Calendar (holycross4him@gmail.com), so whoever has edit access can update events without touching the code. It's built but switched off until the calendar is cleaned up. See [CALENDAR.md](CALENDAR.md).

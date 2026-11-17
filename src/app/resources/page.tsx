@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Needed from "@/components/Needed";
 import PageHero from "@/components/PageHero";
-import { dailyOffice, resources, vestryDocumentCategories } from "@/content/site";
+import { dailyOffice, resources } from "@/content/site";
 
 export const metadata: Metadata = { title: "Resources" };
 
@@ -96,19 +95,6 @@ export default function Resources() {
             </ul>
           </div>
         ))}
-
-        <div id="vestry-documents">
-          <h2 className="text-3xl">Vestry Documents</h2>
-          <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-            {vestryDocumentCategories.map((c) => (
-              <li key={c} className="border-b border-gold/25 py-2 text-ink-soft">{c}</li>
-            ))}
-          </ul>
-          <Needed className="mt-6">
-            The document files for each category (PDFs). They can go in <code>public/docs/</code>,
-            or we can put them behind a password if they shouldn&apos;t be public.
-          </Needed>
-        </div>
       </section>
     </>
   );

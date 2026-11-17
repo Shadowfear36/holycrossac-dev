@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Needed from "@/components/Needed";
 import PageHero from "@/components/PageHero";
 import { site } from "@/content/site";
 
@@ -15,11 +14,11 @@ export default function Give() {
             Give online
           </a>
         ) : (
-          <Needed>
-            How the parish would like to receive gifts: an online giving link (if any), who
-            checks should be made payable to, and whether to mail them to P.O. Box 425. Also
-            any wording or scripture Fr. Dave would like on this page.
-          </Needed>
+          // Fr. Dave (Nov 2026): show "work in progress" until online giving is set up
+          <div className="border-t-2 border-gold paper-deep p-8 text-center">
+            <p className="font-display text-3xl">Online giving is a work in progress.</p>
+            <p className="mt-3 text-lg text-ink-soft">Please check back soon.</p>
+          </div>
         )}
       </section>
     </>

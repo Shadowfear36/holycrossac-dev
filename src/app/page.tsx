@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FacebookFeed from "@/components/FacebookFeed";
-import YouTubeLatest from "@/components/YouTubeLatest";
+import Gallery from "@/components/Gallery";
+import { getGallery } from "@/lib/gallery";
 import LiveBanner from "@/components/LiveBanner";
 import Photo from "@/components/Photo";
 import { UpcomingEventsSection } from "@/components/UpcomingEvents";
@@ -94,24 +95,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Online: livestream banner, latest YouTube videos, latest Facebook posts (all update themselves) */}
+      {/* Online: livestream banner + latest Facebook posts (update themselves).
+          YouTube player removed Nov 2026 (latest video is outdated); restore with <YouTubeLatest /> once the channel is current. */}
       <section className="mx-auto grid max-w-6xl items-start gap-12 px-6 py-24 lg:grid-cols-2">
-        <div>
+        <div className="lg:sticky lg:top-40">
           <p className="eyebrow">Online</p>
           <h2 className="mt-3 text-4xl md:text-5xl">Holy Cross Online</h2>
           <p className="mt-4 text-lg text-ink-soft">Our services are live streamed.</p>
           <div className="mt-8">
             <LiveBanner tone="light" />
-          </div>
-
-          <div className="mt-10" data-no-reveal>
-            <div className="mb-3 flex items-baseline justify-between gap-3">
-              <h3 className="text-2xl">Latest on YouTube</h3>
-              <a href={site.social.youtube} target="_blank" rel="noopener" className="text-sm font-semibold text-oxblood hover:underline">
-                All videos ↗
-              </a>
-            </div>
-            <YouTubeLatest />
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -125,17 +117,6 @@ export default function Home() {
                 <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z" />
               </svg>
               Follow on Facebook
-            </a>
-            <a
-              href={`${site.social.youtube}?sub_confirmation=1`}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-2 bg-[#FF0000] px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#d90000]"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden fill="currentColor">
-                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
-              </svg>
-              Subscribe on YouTube
             </a>
           </div>
         </div>
@@ -205,6 +186,22 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Parish Life: a few photos from the gallery */}
+      <section className="mx-auto max-w-6xl px-6 pt-24">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">Parish Life</p>
+            <h2 className="mt-3 text-4xl md:text-5xl">Life at Holy Cross</h2>
+          </div>
+          <Link href="/parish-life/" className="font-semibold text-oxblood hover:underline">
+            See all photos →
+          </Link>
+        </div>
+        <div className="mt-10" data-no-reveal>
+          <Gallery photos={getGallery().slice(0, 6)} layout="grid" />
         </div>
       </section>
 

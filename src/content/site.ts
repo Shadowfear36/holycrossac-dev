@@ -25,8 +25,8 @@ export const site = {
   },
   // Old site, contact page
   mailing: ["Church of the Holy Cross", "P.O. Box 425", "Sanger, CA 93657"],
-  // Old site footer shows 559-721-2027; contact page body says 559-255-4883. NEEDS CONFIRMING.
-  phone: "559-721-2027",
+  // Confirmed Nov 2026: the church's correct and only phone number (559-721-2027 on the old site was wrong).
+  phone: "559-255-4883",
   // From Fr. Dave (Nov 2026). The old site showed it with a typo ("email.holycrossac.org").
   email: "email@holycrossac.org",
 
@@ -37,6 +37,17 @@ export const site = {
     // which YouTube's embed player shows newest-first and keeps up to date by itself.
     youtubeChannelId: "UCPZeGPTEcF1IEwmQbYWjDDg",
     livestream: "https://www.facebook.com/HolyCrossSanger/videos/",
+  },
+
+  // The parish Google Calendar (account holycross4him@gmail.com), which the old website embedded.
+  // When enabled, its upcoming events appear on the Calendar of Events and home page automatically
+  // (merged with the events listed below in `events`). Kept OFF until the calendar is cleaned up:
+  // it still has outdated repeating events and internal meetings that are publicly visible.
+  // See CALENDAR.md. Turn on by setting enabled: true.
+  calendarFeed: {
+    enabled: false,
+    ics: "https://calendar.google.com/calendar/ical/holycross4him%40gmail.com/public/basic.ics",
+    view: "https://calendar.google.com/calendar/embed?src=holycross4him%40gmail.com&ctz=America%2FLos_Angeles",
   },
 
   // When the Sunday service is livestreamed on Facebook (Pacific time). Drives the
@@ -62,7 +73,9 @@ export type ServiceTime = { day: string; time: string; name: string; note?: stri
 // Old site, home page: "Please join us for Sunday worship! ... 9:30 a.m. Our services are live streamed"
 // NEEDED: any other regular services (weekday, holy days)
 export const services: ServiceTime[] = [
-  { day: "Sunday", time: "9:30 a.m.", name: "Sunday Worship", note: "Our services are live streamed." },
+  // From Fr. Dave (Nov 2026)
+  { day: "Sunday", time: "9:30 a.m.", name: "Holy Eucharist", note: "With music and Communion. Our services are live streamed." },
+  { day: "Wednesday", time: "5:00 p.m.", name: "Bible Study" },
 ];
 
 // NEEDED: full name, title, bio, photo. "Fr. Dave" is all we have so far.
@@ -109,8 +122,7 @@ export type ParishEvent = { date: string; time?: string; title: string; descript
 // NEEDED: real parish events (ISO dates, yyyy-mm-dd)
 // From Fr. Dave (Nov 2026). Past events hide themselves automatically (see EventList).
 export const events: ParishEvent[] = [
-  { date: "2026-11-29", title: "Advent Begins" },
-  { date: "2026-12-06", title: "Lessons & Carols", description: "At Emmanuel Church Cathedral" },
+  { date: "2026-12-06", time: "5:00 p.m.", title: "Lessons & Carols", description: "At Emmanuel Church Cathedral, followed by dinner" },
   { date: "2026-12-12", time: "2:00 – 4:30 p.m.", title: "Christmas Party" },
   { date: "2026-12-24", time: "3:00 p.m.", title: "Christmas Eve Day Service" },
   { date: "2026-12-27", title: "First Sunday of Christmas" },
@@ -144,6 +156,7 @@ export const nav: NavItem[] = [
     href: "/events/",
     children: [
       { label: "Outreach Ministries", href: "/outreach/" },
+      { label: "Parish Life", href: "/parish-life/" },
       { label: "Calendar of Events", href: "/events/" },
       { label: "Resources", href: "/resources/" },
     ],
@@ -165,8 +178,9 @@ export const outreach: Ministry[] = [
   {
     id: "one-child",
     name: "One Child",
-    description: "We sponsor Margyecy from the Diocese of Kigezi, Uganda.",
+    description: "We sponsor Margyecy, a resident of Mushanje Hope Center of Kigezi, Uganda.",
     photo: "outreach-one-child",
+    link: { label: "Visit Mushanje Hope Center", href: "https://app.bridgely.org/communities/a0vVT000000e44vYAA" },
   },
   {
     id: "angel-ministry",
@@ -216,17 +230,6 @@ export const resources: { group: string; links: ResourceLink[] }[] = [
   },
 ];
 
-// Old site, vestry documents page. Categories only; NEEDED: the actual files.
-export const vestryDocumentCategories = [
-  "Bishop's Reports",
-  "Parish Profile",
-  "Financial Reports",
-  "Vestry Minutes",
-  "Vestry Meeting Agendas",
-  "Annual Meetings",
-  "Articles and Bylaws",
-  "Vestry Meeting Packets",
-];
 
 // The Daily Office (dailyoffice2019.com), the parish's liturgical calendar (Fr. Dave, Nov 2026).
 // These links always open on today's office, so they never need updating.
