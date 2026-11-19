@@ -61,8 +61,8 @@ export const site = {
     timeZone: "America/Los_Angeles",
   },
 
-  // NEEDED: how the parish receives gifts (online link, mail, etc.)
-  givingUrl: "",
+  // Online giving: the parish's Tithe.ly form (from Fr. Dave, Nov 2026)
+  givingUrl: "https://give.tithe.ly/?formId=a6379e51-031e-4944-bff9-22d7d5b8bf87",
 
   diocese: { name: "Anglican Diocese of San Joaquin", url: "https://www.dioceseofsanjoaquin.net/", logo: "/images/diocese-logo.png" },
   province: { name: "Anglican Church in North America", url: "https://anglicanchurch.net/", logo: "/images/acna-logo.png" },
@@ -136,9 +136,9 @@ export const clergy: Clergy[] = [
 export type VestryMember = { name: string; role: string; bio?: string[]; firstPerson?: boolean; photo?: string };
 // From Fr. Dave (Nov 2026). Bios verbatim as sent.
 export const vestry: VestryMember[] = [
-  { name: "Beverly Worrell", role: "Senior Warden" },
+  { name: "Beverly Worrell", role: "Senior Warden", photo: "vestry-beverly-worrell" }, // photo Nov 2026, background matched
   {
-    // photo from Fr. Dave (Nov 2026): cap lettering removed, background matched
+    // photo: Tim at the altar (his choice, Nov 2026), cropped from the gallery photo; church background kept
     name: "Tim Lueth",
     role: "Junior Warden",
     photo: "vestry-tim-lueth",
@@ -157,8 +157,8 @@ export const vestry: VestryMember[] = [
       "Cynthia and her husband, Chuck, have one son. In her free time, she enjoys walking, gardening, scrapbooking, cooking, and baking.",
     ],
   },
-  { name: "Sayre Miller", role: "Treasurer" },
-  { name: "Robin Wood", role: "Outreach Coordinator" },
+  { name: "Sayre Miller", role: "Treasurer", photo: "vestry-sayre-miller" }, // cropped from the Ruth Bible study photo, background matched
+  { name: "Robin Wood", role: "Vestry Member & Outreach Ministries Coordinator" },
   {
     name: "Charlene Rogde",
     role: "Vestry Member",

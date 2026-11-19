@@ -14,7 +14,7 @@ Outputs (Next.js picks up the files in src/app/ automatically):
   src/app/twitter-image.jpg      same card for X/Twitter
 
 Fonts: IM Fell English (SIL Open Font License), in scripts/fonts/.
-Photo: photos/library/holy-cross-and-emmanuel-clergy.jpg
+Photo: photos/library/church-front.jpg (the church on O Street; chosen Nov 2026)
 """
 import os
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
@@ -106,7 +106,7 @@ def make_og():
     PANEL = 560  # lettering panel on the left; photo on the right, faces unobstructed
 
     card = Image.new("RGB", (W, H), INK)
-    photo = fit_cover(Image.open(P("photos", "library", "holy-cross-and-emmanuel-clergy.jpg")), W - PANEL + 120, H, (0.30, 0.5))
+    photo = fit_cover(Image.open(P("photos", "library", "church-front.jpg")), W - PANEL + 120, H, (0.5, 0.55))
     # Soft fade from the panel into the photo
     mask = Image.new("L", photo.size, 255)
     md = ImageDraw.Draw(mask)
@@ -131,11 +131,10 @@ def make_og():
     d.line([(66, 404), (360, 404)], fill=GOLD, width=2)
     d.text((64, 424), "Sunday Worship · 9:30 a.m.", font=small, fill=PARCHMENT)
     d.text((64, 464), "828 O Street, Sanger, California", font=small, fill=GOLD_LIGHT)
-    d.text((W - 40, H - 46), "Holy Cross and Emmanuel clergy", font=ImageFont.truetype(FELL_I, 20), fill=(*GOLD_LIGHT,), anchor="ra")
 
     for name in ("opengraph-image.jpg", "twitter-image.jpg"):
         card.save(P("src", "app", name), "JPEG", quality=86, progressive=True, optimize=True)
-    alt = "Holy Cross Anglican Church, Sanger, California. Sunday Worship 9:30 a.m. Photo: Holy Cross and Emmanuel clergy."
+    alt = "Holy Cross Anglican Church, Sanger, California. Sunday Worship 9:30 a.m. Photo: the church on O Street."
     for name in ("opengraph-image.alt.txt", "twitter-image.alt.txt"):
         open(P("src", "app", name), "w", encoding="utf-8").write(alt)
     print("og cards done")

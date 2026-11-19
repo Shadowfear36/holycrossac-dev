@@ -120,9 +120,12 @@ export default function Give() {
           <li className="border-t-2 border-gold paper p-6">
             <h3 className="text-2xl">Online</h3>
             {site.givingUrl ? (
-              <a href={site.givingUrl} className="mt-3 inline-block font-semibold text-oxblood hover:underline">
-                Give online →
-              </a>
+              <>
+                <p className="mt-3 leading-relaxed text-ink-soft">Give securely online, once or on a regular schedule.</p>
+                <a href={site.givingUrl} className="mt-4 inline-block font-semibold text-oxblood hover:underline">
+                  Give online →
+                </a>
+              </>
             ) : (
               <p className="mt-3 leading-relaxed text-ink-soft">Online giving is a work in progress. Please check back soon.</p>
             )}
