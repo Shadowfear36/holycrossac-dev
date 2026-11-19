@@ -9,6 +9,8 @@ Usage:
     .venv-rembg/Scripts/python scripts/match-portrait-background.py \
         photos/library/<name>.jpg photos/library/fr-dave-portrait.jpg photos/library/<name>-matched.jpg [preview.jpg] \
         [--soft-hair=0.52]            # smooth + feather the hair outline in the head area (top 52% of the photo)
+        [--keep-largest]              # keep only the person; drops detached scraps (frame corners, flecks)
+        [--erase-light="x0,y0,x1,y1;..."]  # erase non-dark/red objects touching dark hair inside boxes (fractions)
         [--erase-white=x0,y0,x1,y1]   # remove white objects in an area (fractions); can nibble light clothing, so
                                       # cropping the object out of frame is usually better
 
@@ -58,6 +60,15 @@ if "erase-white" in opts:
     box = np.zeros_like(band); box[int(y0 * h): int(y1 * h), int(x0 * w): int(x1 * w)] = True
     whiteish = (hsv[..., 2] / 255 > 0.72) & (sat < 0.18)
     a[box & whiteish] = 0.0
+# optional: erase background objects next to dark hair (e.g. a picture frame touching the head) inside
+# boxes "x0,y0,x1,y1;x0,y0,x1,y1" (fractions): anything not dark (hair) or that is strongly red goes
+if "erase-light" in opts:
+    lum = I @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
+    redish = (I[..., 0] - I[..., 1]) > 45
+    for spec in opts["erase-light"].split(";"):
+        x0, y0, x1, y1 = [float(v) for v in spec.split(",")]
+        ebox = np.zeros_like(band); ebox[int(y0 * h): int(y1 * h), int(x0 * w): int(x1 * w)] = True
+        a[ebox & ((lum > 110) | redish)] = 0.0
 # remove thin strands/specks left along the outline: a morphological "opening" (shrink then regrow),
 # applied only in the outline band (and in the erase box), so the body of the person is unaffected
 def opening(img_f, size):
@@ -70,6 +81,16 @@ if "erase-white" in opts:
     opened_box = opening(a, 15)
     a[box] = np.minimum(a, opened_box)[box]
 a[clean_zone] = np.minimum(a, opened)[clean_zone]
+# optional: keep only the person (largest connected piece); drops detached scraps such as
+# a picture frame behind the head or a stray fleck beside the hair
+if "keep-largest" in sys.argv[1:]:
+    from scipy import ndimage
+    lab, n = ndimage.label(a > 0.35)
+    if n > 1:
+        sizes = ndimage.sum(np.ones_like(a), lab, index=np.arange(1, n + 1))
+        main = lab == (int(np.argmax(sizes)) + 1)
+        near = np.asarray(Image.fromarray((main * 255).astype(np.uint8), "L").filter(ImageFilter.MaxFilter(5))) > 0
+        a[~near] = 0.0
 # soften very slightly so cleaned edges don't look cut out
 a = np.asarray(Image.fromarray((a * 255).astype(np.uint8), "L").filter(ImageFilter.GaussianBlur(0.8)), dtype=np.float32) / 255.0
 

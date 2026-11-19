@@ -10,10 +10,10 @@ export const site = {
   name: "Holy Cross Anglican Church",
   url: "https://holycrossac.org",
 
-  // Old site, home page
-  vision: "Our Vision is to Go in Peace to Love and Serve the Lord.",
+  // Vision & Mission, verbatim from Fr. Dave (Nov 2026); featured prominently on the home page
+  vision: "To go in peace to love and serve the Lord.",
   mission:
-    "Our Mission is to love God and make disciples for Jesus Christ through His Word and through serving in His Name in the heart of Fresno County, rooted in the tradition of the Anglican Church.",
+    "To love God and make disciples for Jesus Christ through his word and through serving in His name at the heart of Fresno County, rooted in the tradition of the Anglican Church.",
 
   address: {
     street: "828 O Street",
@@ -64,8 +64,8 @@ export const site = {
   // NEEDED: how the parish receives gifts (online link, mail, etc.)
   givingUrl: "",
 
-  diocese: { name: "Anglican Diocese of San Joaquin", url: "https://www.dioceseofsanjoaquin.net/", logo: "/images/diocesan-seal.png" },
-  province: { name: "Anglican Church in North America", url: "https://anglicanchurch.net/", logo: "/images/acna.png" },
+  diocese: { name: "Anglican Diocese of San Joaquin", url: "https://www.dioceseofsanjoaquin.net/", logo: "/images/diocese-logo.png" },
+  province: { name: "Anglican Church in North America", url: "https://anglicanchurch.net/", logo: "/images/acna-logo.png" },
 };
 
 export type ServiceTime = { day: string; time: string; name: string; note?: string };
@@ -75,10 +75,10 @@ export type ServiceTime = { day: string; time: string; name: string; note?: stri
 export const services: ServiceTime[] = [
   // From Fr. Dave (Nov 2026)
   { day: "Sunday", time: "9:30 a.m.", name: "Holy Eucharist", note: "With music and Communion. Our services are live streamed." },
-  { day: "Wednesday", time: "5:00 p.m.", name: "Bible Study" },
+  { day: "Wednesday", time: "5:00 p.m.", name: "Bible Study", note: "Contact Fr. Dave at the church number for details." },
 ];
 
-// NEEDED: full name, title, bio, photo. "Fr. Dave" is all we have so far.
+// Clergy & Staff
 export type Clergy = {
   name: string;
   credentials?: string;
@@ -90,10 +90,12 @@ export type Clergy = {
 // From Fr. Dave (Nov 2026), verbatim
 export const clergy: Clergy[] = [
   {
-    // From the Anglican Diocese of San Joaquin website (Bishop & Staff page), verbatim, at Fr. Dave's
-    // request (Nov 2026); listed first per Fr. Dave. Photo: the diocese's portrait, unaltered.
-    name: "Bishop Eric Menees",
-    role: "Bishop of the Anglican Diocese of San Joaquin",
+    // Bio: the Anglican Diocese of San Joaquin website (Bishop & Staff page), verbatim, at Fr. Dave's
+    // request (Nov 2026); listed first per Fr. Dave. Name, title and DMin per Fr. Dave.
+    // Photo: the headshot Fr. Dave chose (as on Emmanuel's site), background matched.
+    name: "The Rt. Rev. Eric Menees",
+    credentials: "DMin",
+    role: "Bishop Ordinary of the Diocese of San Joaquin",
     photo: "clergy-bishop-eric-menees",
     bio: [
       "Bishop Eric Menees was born in Compton, California on November 21, 1961 and is a tenth generation Los Angelino. Bishop Menees graduated from the General Theological Seminary with an M.Div and from Seabury Western Theological Seminary with a D.Min. Following his ordination Bishop Menees served Spanish language congregations in East Los Angeles and Santa Ana in the Diocese of Los Angeles. From there he was called to the Diocese of San Diego to be the chaplain at The Bishop’s School in La Jolla, California and later as vicar and then rector of Grace Church, San Marcos.",
@@ -118,22 +120,51 @@ export const clergy: Clergy[] = [
     photo: "clergy-melinda-barrow",
     bio: [],
   },
+  {
+    // From Fr. Dave (Nov 2026), verbatim. Staff, listed after Dcn. Melinda.
+    name: "Troy Zweifler",
+    role: "Parish Organist & Music Coordinator",
+    photo: "staff-troy-zweifler",
+    bio: [
+      "Troy serves our parish as organist and music coordinator, bringing his love of music to the worship of the Church. In collaboration with Father Dave, he selects hymns that complement the appointed Scriptures and liturgical themes, helping lead the congregation in prayer, praise, and thanksgiving to God.",
+    ],
+  },
 ];
 
 // NEEDED: vestry names and offices
-export type VestryMember = { name: string; role: string; bio?: string; photo?: string };
-// From Fr. Dave (Nov 2026). Bios are the members' own words.
+// bio: paragraphs; firstPerson bios (the member's own words) are shown as a quotation.
+export type VestryMember = { name: string; role: string; bio?: string[]; firstPerson?: boolean; photo?: string };
+// From Fr. Dave (Nov 2026). Bios verbatim as sent.
 export const vestry: VestryMember[] = [
   { name: "Beverly Worrell", role: "Senior Warden" },
-  { name: "Tim Lueth", role: "Junior Warden", photo: "vestry-tim-lueth" }, // photo from Fr. Dave (Nov 2026): cap lettering removed, background matched
-  { name: "Cynthia Shaheen", role: "Secretary" },
+  {
+    // photo from Fr. Dave (Nov 2026): cap lettering removed, background matched
+    name: "Tim Lueth",
+    role: "Junior Warden",
+    photo: "vestry-tim-lueth",
+    firstPerson: true,
+    bio: [
+      "I have been part of this church community since its founding and have enjoyed serving the parish in many capacities. My ministries include singing in the choir, serving as an acolyte and church delegate, counting the weekly offering, opening and closing the church, and coordinating the monthly schedule for acolytes, lay readers, and those who open and close the church.",
+    ],
+  },
+  {
+    name: "Cynthia Shaheen",
+    role: "Secretary",
+    photo: "vestry-cynthia-shaheen",
+    bio: [
+      "Cynthia brings a wonderful spirit of service to Holy Cross, shaped by many years of active involvement in church ministry. Her service has included roles as a Lay Eucharistic Minister, Crucifer, Usher, Lay Reader, and in the Altar Guild and Hospitality ministries. She is also a member of The Daughters of the Holy Cross.",
+      "Professionally, Cynthia spent 17 years in the airline industry, including 15 years with Continental Airlines, and later retired from Fresno Unified School District after 22 years of service.",
+      "Cynthia and her husband, Chuck, have one son. In her free time, she enjoys walking, gardening, scrapbooking, cooking, and baking.",
+    ],
+  },
   { name: "Sayre Miller", role: "Treasurer" },
   { name: "Robin Wood", role: "Outreach Coordinator" },
   {
     name: "Charlene Rogde",
     role: "Vestry Member",
     photo: "vestry-charlene-rogde",
-    bio: "I am one of the newest catechumen and vestry members at the Holy Cross Anglican Church. I became a church member on September 13th, 2026. I also enjoy serving with the hospitality team, which provides refreshments after Sunday service.",
+    firstPerson: true,
+    bio: ["I am one of the newest catechumen and vestry members at the Holy Cross Anglican Church. I became a church member on September 13th, 2026. I also enjoy serving with the hospitality team, which provides refreshments after Sunday service."],
   },
 ];
 
@@ -158,7 +189,7 @@ export const nav: NavItem[] = [
       { label: "I'm New Here", href: "/new-here/" },
       { label: "About Us", href: "/about/" },
       { label: "What We Believe", href: "/about/#beliefs" },
-      { label: "Clergy & Vestry", href: "/clergy/" },
+      { label: "Clergy, Staff & Vestry", href: "/clergy/" },
     ],
   },
   {
@@ -193,6 +224,8 @@ export type Ministry = {
   photo: string;
   /** Optional link to a partner organization */
   link?: { label: string; href: string };
+  /** Optional YouTube video shown in place of the photo */
+  video?: { youtubeId: string; title: string };
 };
 export const outreach: Ministry[] = [
   {
@@ -227,6 +260,23 @@ export const outreach: Ministry[] = [
     description: "Delivering food to assist a family who is not part of our parish.",
     photo: "outreach-family-support",
   },
+  {
+    // From Fr. Dave (Nov 2026). NEEDED: a photo of Millie (public/photos/outreach-millie-menees.jpg)
+    id: "millie-menees",
+    name: "Missionary Millie Menees",
+    description: "We have sent support to Millie Menees for her missionary work in the Philippines. She serves through SEND International.",
+    photo: "outreach-millie-menees",
+    link: { label: "Visit SEND International", href: "https://www.send.org/" },
+  },
+  {
+    // Fr. Dave (Nov 2026): the ARDF video only, as embedded on emmanuelfresno.org/anglicanism
+    id: "ardf",
+    name: "Anglican Relief and Development Fund",
+    description: "“The Global Anglican Communion,” a video from the Anglican Relief and Development Fund (ARDF).",
+    photo: "outreach-ardf",
+    video: { youtubeId: "IpL6zfCZbJY", title: "The Global Anglican Communion" },
+    link: { label: "Visit ARDF", href: "https://ardf.org/" },
+  },
 ];
 
 // Old site, resources page (same links, same labels, same thumbnail images)
@@ -244,8 +294,8 @@ export const resources: { group: string; links: ResourceLink[] }[] = [
   {
     group: "Our Wider Church",
     links: [
-      { label: "Our Diocesan Website", href: "https://www.dioceseofsanjoaquin.net/", image: "/images/diocesan-seal.png", fit: "contain" },
-      { label: "The ACNA", href: "https://anglicanchurch.net/", image: "/images/acna.png", fit: "contain" },
+      { label: "Our Diocesan Website", href: "https://www.dioceseofsanjoaquin.net/", image: "/images/diocese-logo.png", fit: "contain" },
+      { label: "The ACNA", href: "https://anglicanchurch.net/", image: "/images/acna-logo.png", fit: "contain" },
     ],
   },
 ];

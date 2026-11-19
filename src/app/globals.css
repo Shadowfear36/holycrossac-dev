@@ -168,3 +168,18 @@ h4 {
 @media print {
   .reveal-pending { opacity: 1 !important; transform: none !important; }
 }
+
+/* Footer emblem: the Jerusalem cross turns slowly on its upright axis, like a medal
+   (Fr. Dave, Nov 2026). The red enamel and gold rim are unchanged; the cross is symmetric,
+   so its reverse looks the same. Still for visitors who prefer reduced motion. */
+@keyframes cross-turn {
+  from { transform: perspective(400px) rotateY(0deg); }
+  to { transform: perspective(400px) rotateY(360deg); }
+}
+.cross-turn {
+  animation: cross-turn 9s linear infinite;
+  transform-style: preserve-3d;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cross-turn { animation: none; }
+}

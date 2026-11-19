@@ -30,3 +30,8 @@ Anything missing shows a dashed **"Content needed"** box. Here is the full list:
 - [x] **Event times:** Lessons & Carols 5 pm (+ dinner). Advent is a season (liturgical calendar), not an event.
 - [ ] **Calendar:** the parish already has a Google Calendar (holycross4him@gmail.com). It's connected but switched off until someone with the login cleans it up. See `CALENDAR.md`.
 - [x] **Blessing of animals / gathering photos** for Parish Life (drop into `public/photos/gallery/`).
+
+## From Fr. Dave's Nov 18 batch
+- [ ] **Photo of Millie Menees** for her outreach card (`public/photos/outreach-millie-menees.jpg`); a styled placeholder shows until then.
+- [ ] **Bishop's title:** shown as "Bishop Ordinary of the Diocese of San Joaquin" (Fr. Dave wrote "Bishop to the Ordinary if the Diocese…"). Confirm the wording.
+- [ ] **Giving QR code** (with the Holy Cross cross in the middle) for the bulletin: made once the online giving link exists (`givingUrl` in `src/content/site.ts`).

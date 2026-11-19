@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CrossMark from "@/components/CrossMark";
 import FacebookFeed from "@/components/FacebookFeed";
 import Gallery from "@/components/Gallery";
 import { getGallery } from "@/lib/gallery";
@@ -7,7 +8,7 @@ import Photo from "@/components/Photo";
 import { UpcomingEventsSection } from "@/components/UpcomingEvents";
 import ServiceCard from "@/components/ServiceCard";
 import { outreach, site } from "@/content/site";
-import { aboutIntro, featuredQuote } from "@/content/about";
+import { featuredQuote, homeIntro } from "@/content/about";
 
 // Mirrors the three columns on the old home page: Who We Are, Our Worship Services, Resources
 const tiles = [
@@ -45,9 +46,6 @@ export default function Home() {
               Anglican Church
             </span>
           </h1>
-          <p className="mt-6 max-w-xl font-display text-2xl italic leading-relaxed text-parchment/90">
-            {site.vision}
-          </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/worship/"
@@ -65,14 +63,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Vision & Mission (Fr. Dave, Nov 2026: feature prominently) */}
+      <section className="border-b border-gold/40 paper-deep">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:gap-0">
+          {[
+            { label: "Our Vision", text: site.vision },
+            { label: "Our Mission", text: site.mission },
+          ].map((v, i) => (
+            <div key={v.label} className={`text-center md:px-12 ${i ? "md:border-l md:border-gold/40" : ""}`}>
+              <CrossMark className="mx-auto h-9 w-9" />
+              <p className="eyebrow mt-5">{v.label}</p>
+              <p className={`mt-4 font-display italic leading-snug text-ink ${i ? "text-2xl md:text-[1.7rem]" : "text-3xl md:text-4xl"}`}>
+                {v.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Welcome + service times */}
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-24 md:grid-cols-5">
         <div className="md:col-span-3">
           <p className="eyebrow">Welcome</p>
           <h2 className="mt-3 text-4xl md:text-5xl">Welcome to Holy Cross Anglican Church</h2>
           <div className="prose-church drop-cap mt-6 text-lg">
-            <p>{site.mission}</p>
-            <p>{aboutIntro.paragraphs[0]}</p>
+            {homeIntro.map((p) => (
+              <p key={p.slice(0, 20)}>{p}</p>
+            ))}
           </div>
           <Link href="/about/" className="mt-2 inline-block font-semibold text-oxblood hover:underline">
             About us →
@@ -170,13 +187,32 @@ export default function Home() {
                   href={`/outreach/#${m.id}`}
                   className="group block h-full overflow-hidden border-t-2 border-gold paper transition-shadow hover:shadow-lg hover:shadow-ink/10"
                 >
-                  <div className="overflow-hidden">
-                    <Photo
-                      name={m.photo}
-                      alt=""
-                      optional
-                      className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative overflow-hidden">
+                    {m.video ? (
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`https://i.ytimg.com/vi/${m.video.youtubeId}/hqdefault.jpg`}
+                          alt=""
+                          loading="lazy"
+                          className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center bg-ink/25">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-oxblood/90 text-parchment shadow-lg">
+                            <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6" aria-hidden>
+                              <path fill="currentColor" d="M8 5v14l11-7z" />
+                            </svg>
+                          </span>
+                        </span>
+                      </>
+                    ) : (
+                      <Photo
+                        name={m.photo}
+                        alt=""
+                        hint={m.name}
+                        className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-2xl group-hover:text-oxblood">{m.name}</h3>

@@ -15,13 +15,27 @@ export default function Outreach() {
         <ul className="space-y-14">
           {outreach.map((m, i) => (
             <li key={m.id} id={m.id} className="grid items-center gap-8 md:grid-cols-5">
-              {/* Photo appears automatically once public/photos/<m.photo>.jpg is added */}
-              <Photo
-                name={m.photo}
-                alt={m.name}
-                optional
-                className={`aspect-[4/3] w-full md:col-span-2 ${i % 2 ? "md:order-2" : ""}`}
-              />
+              {/* Video, or the photo (appears automatically once public/photos/<m.photo>.jpg is added) */}
+              {m.video ? (
+                <div className={`aspect-video w-full overflow-hidden bg-ink md:col-span-2 ${i % 2 ? "md:order-2" : ""}`}>
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${m.video.youtubeId}?rel=0`}
+                    title={m.video.title}
+                    loading="lazy"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </div>
+              ) : (
+                <Photo
+                  name={m.photo}
+                  alt={m.name}
+                  hint={m.name}
+                  className={`aspect-[4/3] w-full md:col-span-2 ${i % 2 ? "md:order-2" : ""}`}
+                />
+              )}
               <div className="md:col-span-3">
                 <div className="ornament max-w-[8rem] justify-start text-gold [&::before]:hidden">✠</div>
                 <h2 className="mt-2 text-4xl">{m.name}</h2>

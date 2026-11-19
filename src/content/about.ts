@@ -1,6 +1,8 @@
 /**
  * Verbatim text from the old holycrossac.org "About Us" page, except:
  *  - "Anglo-Catholic parish" changed to "Anglican parish" at Fr. Dave's request (Nov 2026)
+ *  - Sacraments: Scripture citations added (Fr. Dave, Nov 2026; as listed in the ACNA's statement, via emmanuelfresno.org/anglicanism)
+ *  - "express" -> "express and shape" (We are a Worshiping Church), Fr. Dave, Nov 2026
  * Spelling is kept exactly as on the original (e.g. "Apostle's"); edit only if the parish wishes.
  */
 
@@ -12,6 +14,14 @@ export const aboutIntro = {
     "We are a part of Christ's Holy, Catholic, and Apostolic Church, born some 2,000 years ago. More specifically, we are a part of the Anglican family of churches which had its origins in the British Isles in the first century and later carried around the world wherever English speaking people were found. Through faithful witness, carried out in our corporate life and the lives of our individual members, we strive to proclaim the Christian faith in all its fullness: That Jesus Christ is our Lord and Savior who suffered, died, and rose to bring us God's gift of salvation - eternal life!",
   ],
 };
+
+/**
+ * Home page welcome (Fr. Dave, Nov 2026): don't lead with the two-congregation history; instead use the
+ * About page's second paragraph, reworded slightly so it isn't repeated word for word (same content).
+ */
+export const homeIntro = [
+  "We are an Anglican parish in the Anglican Diocese of San Joaquin of the Anglican Church in North America. At Holy Cross we hold to biblical teaching and preaching, to the faith set out in the Apostles', Nicene, and Athanasian Creeds, to traditional and orthodox worship according to the Book of Common Prayer, and to the historic threefold ministry of bishops, priests, and deacons ordained in Apostolic Succession.",
+];
 
 export const believing = {
   id: "beliefs",
@@ -34,7 +44,7 @@ export const worshiping = {
   id: "worship",
   heading: "We are a Worshiping Church",
   paragraphs: [
-    "In the corporate worship of the Anglican Church, the congregation is made up of participants, not spectators. When the Book of Common Prayer is properly used, all worshippers are brought completely into the services. The liturgies contained in the Book of Common Prayer help direct our souls to the worship of Almighty God and strengthens us in our daily life of prayer. This ancient and beautiful worship is an offering of our best to God. The building, altar, vestments, music, and liturgy express our hearts desire to worship the Lord in the beauty of holiness.",
+    "In the corporate worship of the Anglican Church, the congregation is made up of participants, not spectators. When the Book of Common Prayer is properly used, all worshippers are brought completely into the services. The liturgies contained in the Book of Common Prayer help direct our souls to the worship of Almighty God and strengthens us in our daily life of prayer. This ancient and beautiful worship is an offering of our best to God. The building, altar, vestments, music, and liturgy express and shape our hearts desire to worship the Lord in the beauty of holiness.",
   ],
 };
 
@@ -50,6 +60,6 @@ export const sacramental = {
   id: "sacraments",
   heading: "We are a Sacramental Church",
   paragraphs: [
-    "From the beginning, Christianity has been a sacramental religion. Jesus Christ ordained two preeminent sacraments for all His people; Holy Baptism, by which we are made living members of Him and are grafted into His new eternal life, and Holy Communion through which our souls are sustained by His divine life as we strive to be Christ's faithful soldiers and servants in this world. These two sacraments are commonly called Sacraments of the Gospel, or Major Sacraments. There are also five other sacraments of the Church; Reconciliation/Confession, Confirmation, Holy Matrimony, Holy Orders, and Holy Unction/Anointing of the Sick.",
+    "From the beginning, Christianity has been a sacramental religion. Jesus Christ ordained two preeminent sacraments for all His people; Holy Baptism, by which we are made living members of Him and are grafted into His new eternal life, and Holy Communion through which our souls are sustained by His divine life as we strive to be Christ's faithful soldiers and servants in this world (Matthew 28:19–20; Luke 22:14–20; John 6:52–58; 1 Corinthians 11:23–26; 2 Corinthians 1:21–22). These two sacraments are commonly called Sacraments of the Gospel, or Major Sacraments. There are also five other sacraments of the Church; Reconciliation/Confession (John 20:21–23; Acts 2:37–41), Confirmation (2 Timothy 1:6–7; Hebrews 6:1–2), Holy Matrimony (Genesis 2:18–24; Matthew 19:4–6; John 2:1–11), Holy Orders (Numbers 8:9–14; 27:18–23; 1 Timothy 4:14), and Holy Unction/Anointing of the Sick (James 5:14).",
   ],
 };

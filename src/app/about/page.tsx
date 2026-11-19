@@ -62,14 +62,13 @@ export default function About() {
             href={org.url}
             target="_blank"
             rel="noreferrer"
-            className="group flex items-center gap-6 border border-gold/30 p-8 transition-colors hover:border-oxblood"
+            aria-label={`${org.name} (opens their website)`}
+            className="group flex flex-col items-center justify-center gap-5 border border-gold/30 p-8 transition-colors hover:border-oxblood"
           >
+            {/* Official logos only, for consistency (Fr. Dave, Nov 2026) */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={org.logo} alt="" className="h-20 w-auto max-w-32 shrink-0 object-contain" loading="lazy" />
-            <div>
-              <h3 className="text-3xl group-hover:text-oxblood">{org.name}</h3>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-oxblood">Visit website →</p>
-            </div>
+            <img src={org.logo} alt={org.name} className="h-16 w-auto max-w-full object-contain md:h-20" loading="lazy" />
+            <p className="text-sm font-semibold uppercase tracking-wider text-oxblood">Visit website →</p>
           </a>
         ))}
       </section>

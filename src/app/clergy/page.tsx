@@ -3,15 +3,15 @@ import PageHero from "@/components/PageHero";
 import Photo from "@/components/Photo";
 import { clergy, vestry } from "@/content/site";
 
-export const metadata: Metadata = { title: "Clergy & Vestry" };
+export const metadata: Metadata = { title: "Clergy, Staff & Vestry" };
 
 export default function Clergy() {
   return (
     <>
-      <PageHero eyebrow="Welcome" title="Clergy & Vestry" />
+      <PageHero eyebrow="Welcome" title="Clergy, Staff & Vestry" />
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <p className="eyebrow">Clergy</p>
+        <p className="eyebrow">Clergy &amp; Staff</p>
         <div className="mt-8 space-y-16">
           {clergy.map((c) => (
             <article key={c.name} className="grid items-start gap-10 md:grid-cols-3">
@@ -56,14 +56,31 @@ export default function Clergy() {
                     name={v.photo}
                     alt={v.name}
                     optional
-                    position="50% 50%"
-                    className={`aspect-square w-32 shrink-0 sm:w-36 ${v.bio ? "" : "mb-5"}`}
+                    position="50% 22%"
+                    className={`aspect-square w-32 shrink-0 self-start sm:w-36 ${v.bio ? "" : "mb-5"}`}
                   />
                 )}
                 <div>
                   <p className="font-display text-2xl">{v.name}</p>
                   <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-oxblood">{v.role}</p>
-                  {v.bio && <p className="mt-4 max-w-3xl font-display text-lg italic leading-relaxed text-ink-soft">“{v.bio}”</p>}
+                  {v.bio &&
+                    (v.firstPerson ? (
+                      <div className="mt-4 max-w-3xl space-y-3 font-display text-lg italic leading-relaxed text-ink-soft">
+                        {v.bio.map((p, i) => (
+                          <p key={i}>
+                            {i === 0 ? "“" : ""}
+                            {p}
+                            {i === v.bio!.length - 1 ? "”" : ""}
+                          </p>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="mt-4 max-w-3xl space-y-3 leading-relaxed text-ink-soft">
+                        {v.bio.map((p, i) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                    ))}
                 </div>
               </li>
             ))}
