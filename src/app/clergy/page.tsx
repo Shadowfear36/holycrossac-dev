@@ -56,31 +56,26 @@ export default function Clergy() {
                     name={v.photo}
                     alt={v.name}
                     optional
-                    position="50% 22%"
+                    position={v.photoPosition ?? "50% 22%"}
                     className={`aspect-square w-32 shrink-0 self-start sm:w-36 ${v.bio ? "" : "mb-5"}`}
                   />
                 )}
                 <div>
                   <p className="font-display text-2xl">{v.name}</p>
                   <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-oxblood">{v.role}</p>
-                  {v.bio &&
-                    (v.firstPerson ? (
-                      <div className="mt-4 max-w-3xl space-y-3 font-display text-lg italic leading-relaxed text-ink-soft">
-                        {v.bio.map((p, i) => (
-                          <p key={i}>
-                            {i === 0 ? "“" : ""}
-                            {p}
-                            {i === v.bio!.length - 1 ? "”" : ""}
-                          </p>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="mt-4 max-w-3xl space-y-3 leading-relaxed text-ink-soft">
-                        {v.bio.map((p, i) => (
-                          <p key={i}>{p}</p>
-                        ))}
-                      </div>
-                    ))}
+                  {/* Same type for every bio (the parish's book face, upright for easy reading);
+                      a member's own words get quotation marks */}
+                  {v.bio && (
+                    <div className="mt-4 max-w-3xl space-y-3 font-display text-xl leading-relaxed text-ink">
+                      {v.bio.map((p, i) => (
+                        <p key={i}>
+                          {v.firstPerson && i === 0 ? "“" : ""}
+                          {p}
+                          {v.firstPerson && i === v.bio!.length - 1 ? "”" : ""}
+                        </p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </li>
             ))}

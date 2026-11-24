@@ -66,6 +66,9 @@ export const site = {
 
   diocese: { name: "Anglican Diocese of San Joaquin", url: "https://www.dioceseofsanjoaquin.net/", logo: "/images/diocese-logo.png" },
   province: { name: "Anglican Church in North America", url: "https://anglicanchurch.net/", logo: "/images/acna-logo.png" },
+  // Fr. Dave (Nov 2026): add the Anglican Communion, listed after the ACNA. (Their site blocks automated
+  // downloads, so the card shows the name instead of a logo; add one at public/images/ and set `logo`.)
+  communion: { name: "The Anglican Communion", url: "https://www.anglicancommunion.org/", logo: "" },
 };
 
 export type ServiceTime = { day: string; time: string; name: string; note?: string };
@@ -133,12 +136,20 @@ export const clergy: Clergy[] = [
 
 // NEEDED: vestry names and offices
 // bio: paragraphs; firstPerson bios (the member's own words) are shown as a quotation.
-export type VestryMember = { name: string; role: string; bio?: string[]; firstPerson?: boolean; photo?: string };
+export type VestryMember = {
+  name: string;
+  role: string;
+  bio?: string[];
+  firstPerson?: boolean;
+  photo?: string;
+  /** CSS object-position for the square crop (default "50% 22%") */
+  photoPosition?: string;
+};
 // From Fr. Dave (Nov 2026). Bios verbatim as sent.
 export const vestry: VestryMember[] = [
   { name: "Beverly Worrell", role: "Senior Warden", photo: "vestry-beverly-worrell" }, // photo Nov 2026, background matched
   {
-    // photo: Tim at the altar (his choice, Nov 2026), cropped from the gallery photo; church background kept
+    // photo: Tim at the altar (his choice, Nov 2026), cropped from the gallery photo; background matched (--clip-mask)
     name: "Tim Lueth",
     role: "Junior Warden",
     photo: "vestry-tim-lueth",
@@ -151,6 +162,7 @@ export const vestry: VestryMember[] = [
     name: "Cynthia Shaheen",
     role: "Secretary",
     photo: "vestry-cynthia-shaheen",
+    photoPosition: "50% 36%", // whole face incl. chin
     bio: [
       "Cynthia brings a wonderful spirit of service to Holy Cross, shaped by many years of active involvement in church ministry. Her service has included roles as a Lay Eucharistic Minister, Crucifer, Usher, Lay Reader, and in the Altar Guild and Hospitality ministries. She is also a member of The Daughters of the Holy Cross.",
       "Professionally, Cynthia spent 17 years in the airline industry, including 15 years with Continental Airlines, and later retired from Fresno Unified School District after 22 years of service.",
@@ -158,11 +170,22 @@ export const vestry: VestryMember[] = [
     ],
   },
   { name: "Sayre Miller", role: "Treasurer", photo: "vestry-sayre-miller" }, // cropped from the Ruth Bible study photo, background matched
-  { name: "Robin Wood", role: "Vestry Member & Outreach Ministries Coordinator" },
+  {
+    // Bio from Fr. Dave (Nov 2026), verbatim from the printed page; photo background matched
+    name: "Robin Wood",
+    role: "Vestry Member & Outreach Ministries Coordinator",
+    photo: "vestry-robin-wood",
+    bio: [
+      "Robin oversees our outreach ministries, Feeding All God’s Children. She joined the Vestry at Holy Cross in 2025.",
+      "Professionally, she has worked managing health programs through the California Health Collaborative, health education at Kaiser Permanente, is adjunct faculty at Fresno State and currently works for California’s Valued Trust promoting staff health and wellness at over 200 school districts in California.",
+      "Robin and her husband, Harold, love spending time with family and are enjoying the grandparent stage with two boys and a girl. She also loves to travel, both near and far, play tennis, be active and stay connected with friends and family.",
+    ],
+  },
   {
     name: "Charlene Rogde",
     role: "Vestry Member",
     photo: "vestry-charlene-rogde",
+    photoPosition: "50% 80%", // her face sits low in the photo: centre it in the square
     firstPerson: true,
     bio: ["I am one of the newest catechumen and vestry members at the Holy Cross Anglican Church. I became a church member on September 13th, 2026. I also enjoy serving with the hospitality team, which provides refreshments after Sunday service."],
   },
@@ -296,6 +319,7 @@ export const resources: { group: string; links: ResourceLink[] }[] = [
     links: [
       { label: "Our Diocesan Website", href: "https://www.dioceseofsanjoaquin.net/", image: "/images/diocese-logo.png", fit: "contain" },
       { label: "The ACNA", href: "https://anglicanchurch.net/", image: "/images/acna-logo.png", fit: "contain" },
+      { label: "The Anglican Communion", href: "https://www.anglicancommunion.org/", image: "", fit: "contain" },
     ],
   },
 ];

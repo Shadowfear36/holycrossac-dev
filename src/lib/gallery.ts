@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { galleryOrder } from "@/content/gallery";
 
-export type GalleryPhoto = { src: string; thumb: string; caption?: string; alt: string };
+export type GalleryPhoto = { src: string; thumb: string; caption?: string; alt: string; position?: string };
 
 const EXTS = [".jpg", ".jpeg", ".png", ".webp"];
 
@@ -19,9 +19,9 @@ export function getGallery(): GalleryPhoto[] {
     .sort();
   const byBase = new Map(files.map((f) => [path.basename(f, path.extname(f)), f]));
   const listed = galleryOrder.filter((e) => byBase.has(e.file));
-  const rest = [...byBase.keys()].filter((b) => !galleryOrder.some((e) => e.file === b)).map((file) => ({ file, caption: undefined }));
+  const rest = [...byBase.keys()].filter((b) => !galleryOrder.some((e) => e.file === b)).map((file) => ({ file, caption: undefined, position: undefined }));
 
-  return [...listed, ...rest].map(({ file, caption }) => {
+  return [...listed, ...rest].map(({ file, caption, position }) => {
     const name = byBase.get(file)!;
     const hasThumb = fs.existsSync(path.join(dir, "thumbs", name));
     return {
@@ -29,6 +29,7 @@ export function getGallery(): GalleryPhoto[] {
       thumb: hasThumb ? `/photos/gallery/thumbs/${name}` : `/photos/gallery/${name}`,
       caption,
       alt: caption ?? "Parish life at Holy Cross",
+      position,
     };
   });
 }

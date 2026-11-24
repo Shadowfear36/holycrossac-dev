@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "I'm New Here" };
 export default function NewHere() {
   return (
     <>
-      <PageHero eyebrow="Welcome" title="I'm New Here" photo="hero-new-here" photoHint="Front doors / exterior of the church" photoPosition="60% 40%" />
+      <PageHero eyebrow="Welcome" title="I'm New Here" photo="hero-new-here" photoHint="Front doors / exterior of the church" photoPosition="50% 68%" stacked />
 
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-5">
         <div className="md:col-span-3">

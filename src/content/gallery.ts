@@ -6,11 +6,16 @@
  * Add it below to give it a caption or a place in the order; unlisted photos appear after these,
  * without a caption. Captions are only ever the parish's own words.
  */
-export type GalleryEntry = { file: string; caption?: string };
+/** position: CSS object-position for cropped tiles (keeps faces in frame), e.g. "50% 5%" */
+export type GalleryEntry = { file: string; caption?: string; position?: string };
 
 export const galleryOrder: GalleryEntry[] = [
   { file: "holy-cross-members", caption: "Holy Cross members" },
-  { file: "fr-dave-with-dog", caption: "Blessing of the Animals" },
+  { file: "fr-dave-with-dog", caption: "Blessing of the Animals", position: "50% 5%" },
+  {
+    file: "st-michaels-west-coast-absolution",
+    caption: "Fr. Dave giving the Absolution at Mass at St. Michael’s West Coast in Three Rivers, CA",
+  },
   { file: "tim-lueth-at-altar" },
   {
     file: "field-trip-holy-monastery-dunlap",

@@ -55,8 +55,8 @@ export default function About() {
         </section>
       ))}
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-2">
-        {[site.diocese, site.province].map((org) => (
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-3">
+        {[site.diocese, site.province, site.communion].map((org) => (
           <a
             key={org.url}
             href={org.url}
@@ -66,8 +66,12 @@ export default function About() {
             className="group flex flex-col items-center justify-center gap-5 border border-gold/30 p-8 transition-colors hover:border-oxblood"
           >
             {/* Official logos only, for consistency (Fr. Dave, Nov 2026) */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={org.logo} alt={org.name} className="h-16 w-auto max-w-full object-contain md:h-20" loading="lazy" />
+            {org.logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={org.logo} alt={org.name} className="h-16 w-auto max-w-full object-contain md:h-20" loading="lazy" />
+            ) : (
+              <p className="flex h-16 items-center text-center font-smallcaps text-3xl leading-tight text-ink md:h-20">{org.name}</p>
+            )}
             <p className="text-sm font-semibold uppercase tracking-wider text-oxblood">Visit website →</p>
           </a>
         ))}

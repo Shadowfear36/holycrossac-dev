@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CrossMark from "@/components/CrossMark";
 import PageHero from "@/components/PageHero";
-import { alms, givingIntro, roadmap, tithes, waysToGive } from "@/content/giving";
+import { alms, givingIntro, lastingGifts, roadmap, tithes, waysToGive } from "@/content/giving";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = { title: "A Culture of Generosity" };
@@ -13,22 +14,32 @@ export default function Give() {
 
       <section className="mx-auto max-w-4xl px-6 pt-20">
         <p className="font-display text-2xl italic leading-relaxed text-ink-soft md:text-3xl">{givingIntro}</p>
-        <div className="mt-10">
-          {site.givingUrl ? (
-            <a
-              href={site.givingUrl}
-              className="inline-block bg-oxblood px-8 py-4 text-sm font-semibold uppercase tracking-wider text-parchment hover:bg-oxblood-dark"
-            >
-              Give online
-            </a>
-          ) : (
-            // Fr. Dave (Nov 2026): "work in progress" until online giving is set up (then a QR code too)
-            <p className="border-l-2 border-gold pl-5 text-lg text-ink-soft">
-              Online giving is a work in progress. Please check back soon.
-            </p>
-          )}
-        </div>
       </section>
+
+      {/* Fr. Dave (Nov 2026): the link and QR right at the top; the teaching follows; then the ways to give again */}
+      {site.givingUrl && (
+        <section className="mt-14 bg-oxblood text-parchment">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 px-6 py-14 text-center md:flex-row md:justify-center md:text-left">
+            <a href={site.givingUrl} aria-label="Give online" className="shrink-0 bg-white p-2 shadow-lg">
+              {/* QR (scripts/make-giving-qr.mjs) opens the quick-giving page, holycrossac.org/give-now/ */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/giving-qr.svg" alt="QR code for giving to Holy Cross" width={176} height={176} className="h-44 w-44" />
+            </a>
+            <div>
+              <p className="eyebrow text-gold-light">Give Online</p>
+              <p className="mt-3 font-display text-3xl leading-snug md:text-4xl">Once or on a regular schedule, by card or bank.</p>
+              <a
+                href={site.givingUrl}
+                className="mt-6 inline-block bg-gold px-8 py-4 text-sm font-semibold uppercase tracking-wider text-ink hover:bg-gold-light"
+              >
+                Give online
+              </a>
+              <p className="mt-3 text-sm text-parchment/75">Or scan the code with your phone’s camera.</p>
+            </div>
+          </div>
+        </section>
+      )}
+
 
       {/* Tithes & alms */}
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-2">
@@ -97,52 +108,77 @@ export default function Give() {
         </div>
       </section>
 
-      {/* Ways to give */}
+      {/* Ways to give (each card is clickable where there's somewhere to go) */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <p className="eyebrow">Ways to Give</p>
         <h2 className="mt-3 text-4xl md:text-5xl">How to Give</h2>
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {waysToGive.map((w) => (
-            <li key={w.title} className="border-t-2 border-gold paper p-6">
-              <h3 className="text-2xl">{w.title}</h3>
-              <p className="mt-3 leading-relaxed text-ink-soft">{w.text}</p>
-              {w.showMailing && (
-                <address className="mt-4 font-display text-lg not-italic leading-snug">
-                  {site.mailing.map((l) => (
-                    <span key={l} className="block">
-                      {l}
-                    </span>
-                  ))}
-                </address>
-              )}
-            </li>
-          ))}
-          <li className="border-t-2 border-gold paper p-6">
-            <h3 className="text-2xl">Online</h3>
-            {site.givingUrl ? (
-              <>
+          {site.givingUrl && (
+            <li>
+              <a
+                href={site.givingUrl}
+                className="group flex h-full flex-col border-t-2 border-gold paper p-6 transition-shadow hover:shadow-lg hover:shadow-ink/10"
+              >
+                <h3 className="text-2xl group-hover:text-oxblood">Online</h3>
                 <p className="mt-3 leading-relaxed text-ink-soft">Give securely online, once or on a regular schedule.</p>
-                <a href={site.givingUrl} className="mt-4 inline-block font-semibold text-oxblood hover:underline">
-                  Give online →
-                </a>
+                <span className="mt-auto pt-4 font-semibold text-oxblood">Give online →</span>
+              </a>
+            </li>
+          )}
+          {waysToGive.map((w) => {
+            const body = (
+              <>
+                <h3 className={`text-2xl ${w.href ? "group-hover:text-oxblood" : ""}`}>{w.title}</h3>
+                <p className="mt-3 leading-relaxed text-ink-soft">{w.text}</p>
+                {w.showMailing && (
+                  <address className="mt-4 font-display text-lg not-italic leading-snug">
+                    {site.mailing.map((l) => (
+                      <span key={l} className="block">
+                        {l}
+                      </span>
+                    ))}
+                  </address>
+                )}
+                {w.href && <span className="mt-auto pt-4 font-semibold text-oxblood">{w.hrefLabel} →</span>}
               </>
-            ) : (
-              <p className="mt-3 leading-relaxed text-ink-soft">Online giving is a work in progress. Please check back soon.</p>
-            )}
-          </li>
+            );
+            return (
+              <li key={w.title}>
+                {w.href ? (
+                  <a
+                    href={w.href}
+                    className="group flex h-full flex-col border-t-2 border-gold paper p-6 transition-shadow hover:shadow-lg hover:shadow-ink/10"
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  <div className="flex h-full flex-col border-t-2 border-gold paper p-6">{body}</div>
+                )}
+              </li>
+            );
+          })}
         </ul>
-        <p className="mt-12 text-sm text-stone">
-          Adapted, with thanks, from{" "}
-          <a
-            href="https://www.emmanuelfresno.org/a-culture-of-generosity"
-            target="_blank"
-            rel="noopener"
-            className="underline decoration-gold/50 underline-offset-2 hover:text-oxblood"
-          >
-            Emmanuel Anglican Church, Fresno
-          </a>
-          .
-        </p>
+
+        {/* Other ways to give (lasting gifts) */}
+        <div className="mt-20">
+          <p className="eyebrow">Lasting Gifts</p>
+          <h2 className="mt-3 text-4xl md:text-5xl">Other Ways to Give</h2>
+          <div className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {lastingGifts.map((g) => (
+              <div key={g.title} className="border-l-2 border-gold pl-6">
+                <h3 className="text-2xl">{g.title}</h3>
+                <p className="mt-3 leading-relaxed text-ink-soft">{g.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-12 text-lg">
+            To talk about a gift like this, please{" "}
+            <Link href="/contact/" className="font-semibold text-oxblood hover:underline">
+              contact Fr. Dave
+            </Link>
+            .
+          </p>
+        </div>
       </section>
     </>
   );

@@ -11,6 +11,7 @@ Usage:
         [--soft-hair=0.52]            # smooth + feather the hair outline in the head area (top 52% of the photo)
         [--keep-largest]              # keep only the person; drops detached scraps (frame corners, flecks)
         [--grey-hair=0.3]             # restore grey/white hair cut off against a coloured wall (top 30% of the photo)
+        [--clip-mask=mask.png]        # hand-drawn white outline of the person; outside it is background
         [--erase-light="x0,y0,x1,y1;..."]  # erase non-dark/red objects touching dark hair inside boxes (fractions)
         [--erase-white=x0,y0,x1,y1]   # remove white objects in an area (fractions); can nibble light clothing, so
                                       # cropping the object out of frame is usually better
@@ -100,6 +101,15 @@ if "erase-white" in opts:
     opened_box = opening(a, 15)
     a[box] = np.minimum(a, opened_box)[box]
 a[clean_zone] = np.minimum(a, opened)[clean_zone]
+# optional (--clip-mask=<png>): a hand-drawn white-on-black outline of the person (same size as the photo);
+# everything outside it is background. For busy backgrounds (altar, flowers) that touch the person.
+if "clip-mask" in opts:
+    clip = Image.open(opts["clip-mask"]).convert("L").resize((w, h)).filter(ImageFilter.GaussianBlur(1.5))
+    clip_f = np.asarray(clip, dtype=np.float32) / 255.0
+    a = np.minimum(a, clip_f)
+    # inside the outline, dark pixels (dark clothing) are the person: fills small holes the cut-out left
+    lum0 = I @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
+    a[(clip_f > 0.99) & (lum0 < 70)] = 1.0
 # optional: keep only the person (largest connected piece); drops detached scraps such as
 # a picture frame behind the head or a stray fleck beside the hair
 if "keep-largest" in sys.argv[1:]:

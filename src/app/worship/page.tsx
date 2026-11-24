@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: "Worship" };
 export default function Worship() {
   return (
     <>
-      <PageHero eyebrow="Worship" title="Please join us for Sunday worship!" photo="hero-worship" photoHint="Sunday worship" photoPosition="50% 30%" />
+      <PageHero eyebrow="Worship" title="Please join us for Sunday worship!" photo="hero-worship" photoHint="Sunday worship" photoPosition="50% 21%" />
 
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-5">
         <div className="md:col-span-3">

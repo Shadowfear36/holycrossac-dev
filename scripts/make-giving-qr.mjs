@@ -1,5 +1,5 @@
 /**
- * Giving QR code with the Holy Cross Jerusalem cross in the middle, for the bulletin (not used on the website).
+ * Giving QR code with the Holy Cross Jerusalem cross in the middle, for the bulletin and the Give page.
  *
  *   node scripts/make-giving-qr.mjs
  *
@@ -7,6 +7,7 @@
  * online giving and the other ways to give. Writes:
  *   print/giving-qr.svg   sharp at any size
  *   print/giving-qr.png   2000 x 2000 px, for the bulletin / Word / Publisher
+ *   public/giving-qr.svg  shown on the Give page
  *
  * Uses the highest error correction (H, ~30%) so the cross in the centre (about 7% of the area)
  * never stops it scanning. Re-run this whenever the giving link changes.
@@ -81,5 +82,6 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size
 
 fs.mkdirSync(path.join(ROOT, "print"), { recursive: true });
 fs.writeFileSync(path.join(ROOT, "print/giving-qr.svg"), svg);
+fs.writeFileSync(path.join(ROOT, "public/giving-qr.svg"), svg); // shown on the Give page
 await sharp(Buffer.from(svg), { density: 2000 / size * 72 }).resize(2000, 2000).png().toFile(path.join(ROOT, "print/giving-qr.png"));
 console.log(`QR for ${url}\n  ${n}x${n} modules, level H, centre ${hole}x${hole} → print/giving-qr.svg, print/giving-qr.png`);

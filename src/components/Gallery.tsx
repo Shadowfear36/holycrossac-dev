@@ -56,7 +56,13 @@ export default function Gallery({ photos, layout = "masonry" }: { photos: Galler
             <li key={p.src}>
               <button type="button" onClick={() => setOpen(i)} className="group block w-full overflow-hidden" aria-label={`Open photo: ${p.alt}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.thumb} alt={p.alt} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img
+                  src={p.thumb}
+                  alt={p.alt}
+                  loading="lazy"
+                  style={p.position ? { objectPosition: p.position } : undefined}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </button>
             </li>
           ))}

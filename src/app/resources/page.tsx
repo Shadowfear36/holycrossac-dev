@@ -80,13 +80,17 @@ export default function Resources() {
                     className="group block h-full border border-gold/30 transition-colors hover:border-oxblood hover:bg-parchment-deep"
                   >
                     <div className="flex h-44 items-center justify-center overflow-hidden paper">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={l.image}
-                        alt=""
-                        loading="lazy"
-                        className={l.fit === "cover" ? "h-full w-full object-cover" : "max-h-32 max-w-[70%] object-contain"}
-                      />
+                      {l.image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={l.image}
+                          alt=""
+                          loading="lazy"
+                          className={l.fit === "cover" ? "h-full w-full object-cover" : "max-h-32 max-w-[70%] object-contain"}
+                        />
+                      ) : (
+                        <span className="px-6 text-center font-smallcaps text-2xl text-ink">{l.label}</span>
+                      )}
                     </div>
                     <p className="p-5 font-display text-2xl group-hover:text-oxblood">{l.label} ↗</p>
                   </a>
