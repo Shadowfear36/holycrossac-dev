@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { dailyOffice, services } from "@/content/site";
+import MonthCalendar from "@/components/MonthCalendar";
 import { EventsList } from "@/components/UpcomingEvents";
 
 export const metadata: Metadata = { title: "Calendar of Events" };
@@ -12,7 +13,8 @@ export default function Events() {
 
       <section className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-3">
         <div className="md:col-span-2">
-          <h2 className="text-3xl">Parish Events</h2>
+          <p className="eyebrow">Coming Up</p>
+          <h2 className="mt-3 text-3xl md:text-4xl">Upcoming Events</h2>
           <div className="mt-6">
             <EventsList />
           </div>
@@ -31,6 +33,13 @@ export default function Events() {
             ))}
           </ul>
         </aside>
+      </section>
+
+      {/* Month view of the parish Google Calendar (updates by itself; see CALENDAR.md) */}
+      <section id="month" className="mx-auto max-w-6xl px-6 pb-24" data-no-reveal>
+        <p className="eyebrow">Month by Month</p>
+        <h2 className="mt-3 mb-8 text-3xl md:text-4xl">Parish Calendar</h2>
+        <MonthCalendar />
       </section>
 
       {/* The liturgical year (seasons, holy days and their colours) from The Daily Office: Fr. Dave, Nov 2026 */}

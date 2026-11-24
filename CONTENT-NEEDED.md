@@ -28,7 +28,8 @@ Anything missing shows a dashed **"Content needed"** box. Here is the full list:
 - [ ] Section headings like "Welcome", "Visit us", "Watch online" are plain labels added for layout.
 
 - [x] **Event times:** Lessons & Carols 5 pm (+ dinner). Advent is a season (liturgical calendar), not an event.
-- [ ] **Calendar:** the parish already has a Google Calendar (holycross4him@gmail.com). It's connected but switched off until someone with the login cleans it up. See `CALENDAR.md`.
+- [x] **Calendar:** the parish Google Calendar (holycross4him@gmail.com) is connected and on. Old repeating events and internal items still to tidy in Google; see `CALENDAR.md`.
+- [x] **Parish Life uploads:** Google Drive folder, live on the Parish Life page. See `GALLERY.md`.
 - [x] **Blessing of animals / gathering photos** for Parish Life (drop into `public/photos/gallery/`).
 
 ## From Fr. Dave's Nov 18 batch

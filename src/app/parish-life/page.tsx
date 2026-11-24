@@ -11,7 +11,7 @@ export default function ParishLife() {
     <>
       <PageHero eyebrow="Connect" title="Parish Life" />
       <section className="mx-auto max-w-6xl px-6 py-20" data-no-reveal>
-        <Gallery photos={photos} />
+        <Gallery photos={photos} withDrive />
       </section>
     </>
   );

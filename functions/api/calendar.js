@@ -6,23 +6,24 @@
  * (Cloudflare bundles this file and its imports automatically on deploy.)
  */
 import { site } from "../../src/content/site.ts";
-import { upcomingFromIcs } from "../../src/lib/calendarFeed.ts";
+import { occurrencesFromIcs, upcomingFromIcs } from "../../src/lib/calendarFeed.ts";
 
 const FRESH_SECONDS = 300; // re-read Google at most every 5 minutes
 
 export async function onRequestGet() {
   if (!site.calendarFeed.enabled) {
-    return Response.json({ updated: new Date().toISOString(), events: [], disabled: true });
+    return Response.json({ updated: new Date().toISOString(), events: [], occurrences: [], disabled: true });
   }
   try {
     const res = await fetch(site.calendarFeed.ics, { cf: { cacheTtl: FRESH_SECONDS, cacheEverything: true } });
     if (!res.ok) throw new Error(`calendar responded ${res.status}`);
-    const events = upcomingFromIcs(await res.text());
+    const ics = await res.text();
+    const opts = { hideRepeating: site.calendarFeed.hideRepeating };
     return Response.json(
-      { updated: new Date().toISOString(), events },
+      { updated: new Date().toISOString(), events: upcomingFromIcs(ics, opts), occurrences: occurrencesFromIcs(ics, opts) },
       { headers: { "Cache-Control": `public, max-age=${FRESH_SECONDS}` } },
     );
   } catch (err) {
-    return Response.json({ error: String(err), events: [] }, { status: 502 });
+    return Response.json({ error: String(err) }, { status: 502 });
   }
 }

@@ -40,14 +40,22 @@ export const site = {
   },
 
   // The parish Google Calendar (account holycross4him@gmail.com), which the old website embedded.
-  // When enabled, its upcoming events appear on the Calendar of Events and home page automatically
-  // (merged with the events listed below in `events`). Kept OFF until the calendar is cleaned up:
-  // it still has outdated repeating events and internal meetings that are publicly visible.
-  // See CALENDAR.md. Turn on by setting enabled: true.
+  // Its upcoming events appear on the Calendar of Events and home page automatically (merged with
+  // any events listed below in `events`). See CALENDAR.md.
   calendarFeed: {
-    enabled: false,
+    enabled: true,
+    // Repeating events whose title starts with one of these are left off the events list: they are the
+    // regular weekly services, already shown on the Worship page (`services`). One-off events still show.
+    hideRepeating: ["Holy Communion", "Bible Study"],
     ics: "https://calendar.google.com/calendar/ical/holycross4him%40gmail.com/public/basic.ics",
     view: "https://calendar.google.com/calendar/embed?src=holycross4him%40gmail.com&ctz=America%2FLos_Angeles",
+  },
+
+  // Parish Life photos uploaded to this Google Drive folder ("HolyCrossAC-Website-Gallery", shared as
+  // "Anyone with the link can view") appear on the Parish Life page automatically. See GALLERY.md.
+  galleryDrive: {
+    enabled: true,
+    folderId: "1DGfs3G6YtSM27NCEXdeOtMDTMdX1GIth",
   },
 
   // When the Sunday service is livestreamed on Facebook (Pacific time). Drives the
@@ -196,9 +204,6 @@ export type ParishEvent = { date: string; time?: string; title: string; descript
 // NEEDED: real parish events (ISO dates, yyyy-mm-dd)
 // From Fr. Dave (Nov 2026). Past events hide themselves automatically (see EventList).
 export const events: ParishEvent[] = [
-  { date: "2026-12-06", time: "5:00 p.m.", title: "Lessons & Carols", description: "At Emmanuel Church Cathedral, followed by dinner" },
-  { date: "2026-12-12", time: "2:00 – 4:30 p.m.", title: "Christmas Party" },
-  { date: "2026-12-24", time: "3:00 p.m.", title: "Christmas Eve Day Service" },
   { date: "2026-12-27", title: "First Sunday of Christmas" },
 ];
 

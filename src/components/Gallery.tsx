@@ -1,14 +1,55 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { site } from "@/content/site";
+import type { DrivePhoto } from "@/lib/driveFolder";
 import type { GalleryPhoto } from "@/lib/gallery";
+
+/** Photos from the parish's Google Drive folder (live from /api/gallery on Cloudflare, else the build snapshot). */
+function useDrivePhotos(on: boolean): GalleryPhoto[] {
+  const [list, setList] = useState<GalleryPhoto[]>([]);
+  useEffect(() => {
+    if (!on || !site.galleryDrive.enabled) return;
+    let alive = true;
+    const load = async (url: string) => {
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(String(r.status));
+      const j = (await r.json()) as { photos?: DrivePhoto[] };
+      if (!j.photos) throw new Error("no photos");
+      return j.photos;
+    };
+    load("/api/gallery")
+      .catch(() => load("/gallery-feed.json"))
+      .then(
+        (photos) =>
+          alive &&
+          setList(photos.map((p) => ({ src: p.src, thumb: p.thumb, caption: p.caption, alt: p.caption ?? "Parish life at Holy Cross" }))),
+      )
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [on]);
+  return list;
+}
 
 /**
  * Photo grid with a full-screen viewer.
  * Click a photo to open it; use the arrows (or ← → keys) to move between photos,
  * and Esc, the × button, or a click outside the photo to close.
  */
-export default function Gallery({ photos, layout = "masonry" }: { photos: GalleryPhoto[]; layout?: "masonry" | "grid" }) {
+export default function Gallery({
+  photos: built,
+  layout = "masonry",
+  withDrive = false,
+}: {
+  photos: GalleryPhoto[];
+  layout?: "masonry" | "grid";
+  /** also show the photos uploaded to the parish Google Drive folder */
+  withDrive?: boolean;
+}) {
+  const drive = useDrivePhotos(withDrive);
+  const photos = drive.length ? [...drive, ...built] : built;
   const [open, setOpen] = useState<number | null>(null);
   const close = useCallback(() => setOpen(null), []);
   const step = useCallback(
