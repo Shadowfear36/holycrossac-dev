@@ -22,11 +22,11 @@ export default function Give() {
       {site.givingUrl && (
         <section className="mt-14 bg-oxblood text-parchment">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 px-6 py-14 text-center md:flex-row md:justify-center md:text-left">
-            {/* Photo: the nave of Holy Cross (public/photos/worship-interior.jpg) */}
+            {/* Stock photo (Unsplash; credit in photos/README.md): a collection basket passed along the pews */}
             <Photo
-              name="worship-interior"
-              alt="Inside Holy Cross Anglican Church"
-              hint="Inside the church"
+              name="stock-give-collection-basket"
+              alt="A collection basket being passed along a church pew"
+              hint="Collection basket"
               className="aspect-[4/3] w-full max-w-sm shrink-0 shadow-lg md:w-80"
             />
             <div>

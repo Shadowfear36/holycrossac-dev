@@ -45,6 +45,7 @@ Chosen to be symbolic (hands, Bible, food), not people presented as parishioners
 | stock-outreach-daughters-of-the-holy-cross.jpg | Daughters of the Holy Cross | https://unsplash.com/photos/b_SHPU5M3nk | Patrick Fore |
 | stock-outreach-bible-study.jpg | Outreach Bible Study | https://unsplash.com/photos/DRgrzQQsJDA | Rod Long |
 | stock-outreach-family-support.jpg | Family Support | https://unsplash.com/photos/4GLeChny4bU | Max Raber |
+| stock-give-collection-basket.jpg | Give page, Give Online band (chosen Nov 2026; cropped to 4:3) | https://unsplash.com/photos/8zuQyIqi7Ac | G + L (@_wonderinthewild) |
 
 To replace one with a real parish photo, overwrite the matching file in `public/photos/` (e.g. `outreach-angel-ministry.jpg`).
 
