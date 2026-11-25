@@ -177,7 +177,7 @@ export const vestry: VestryMember[] = [
       "Cynthia and her husband, Chuck, have one son. In her free time, she enjoys walking, gardening, scrapbooking, cooking, and baking.",
     ],
   },
-  { name: "Sayre Miller", role: "Treasurer", photo: "vestry-sayre-miller" }, // cropped from the Ruth Bible study photo, background matched
+  { name: "Sayre Miller", role: "Treasurer", photo: "vestry-sayre-miller" }, // cropped from her group photo (photos/originals/sayre-miller.png), background matched
   {
     // Bio from Fr. Dave (Nov 2026), verbatim from the printed page; photo background matched
     name: "Robin Wood",
