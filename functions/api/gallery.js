@@ -5,7 +5,7 @@
  * (Cloudflare bundles this file and its imports automatically on deploy.)
  */
 import { site } from "../../src/content/site.ts";
-import { folderListUrl, photosFromFolderPage } from "../../src/lib/driveFolder.ts";
+import { folderListUrl, photosFromFolder } from "../../src/lib/driveFolder.ts";
 
 const FRESH_SECONDS = 300; // re-read Google at most every 5 minutes
 
@@ -18,7 +18,11 @@ export async function onRequestGet() {
       cf: { cacheTtl: FRESH_SECONDS, cacheEverything: true },
     });
     if (!res.ok) throw new Error(`Google Drive responded ${res.status}`);
-    const photos = photosFromFolderPage(await res.text());
+    const photos = await photosFromFolder(await res.text(), async (url) => {
+      const r = await fetch(url, { cf: { cacheTtl: FRESH_SECONDS, cacheEverything: true } });
+      if (!r.ok) throw new Error(String(r.status));
+      return r.arrayBuffer();
+    });
     return Response.json(
       { updated: new Date().toISOString(), photos },
       { headers: { "Cache-Control": `public, max-age=${FRESH_SECONDS}` } },

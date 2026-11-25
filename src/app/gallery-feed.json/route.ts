@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { folderListUrl, photosFromFolderPage, type DrivePhoto } from "@/lib/driveFolder";
+import { folderListUrl, photosFromFolder, type DrivePhoto } from "@/lib/driveFolder";
 
 /**
  * Build-time snapshot of the parish Google Drive gallery folder → /gallery-feed.json.
@@ -13,7 +13,13 @@ export async function GET() {
   if (site.galleryDrive.enabled) {
     try {
       const res = await fetch(folderListUrl(site.galleryDrive.folderId));
-      if (res.ok) photos = photosFromFolderPage(await res.text());
+      if (res.ok) {
+        photos = await photosFromFolder(await res.text(), async (url) => {
+          const r = await fetch(url);
+          if (!r.ok) throw new Error(String(r.status));
+          return r.arrayBuffer();
+        });
+      }
     } catch {
       // offline at build time: leave empty; the live endpoint covers it on the real site
     }

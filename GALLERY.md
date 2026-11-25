@@ -10,10 +10,12 @@ ahead of the photos built into the site.
 ## Adding a photo
 
 1. Upload the photo (.jpg, .png, .heic from an iPhone, etc.) into the folder.
-2. **Caption:** name the file what the caption should say, e.g. `Blessing of the Animals 2026.jpg`.
-   Photos with camera names (`IMG_1234.jpg`, `PXL_…`, screenshots) show without a caption.
-3. It appears on the live site within about **5 minutes**. To take a photo down, delete it from the folder
-   (or move it out).
+2. **Caption:** upload a text file with **the same name** as the photo, containing the caption, e.g.
+   `Christmas Party.jpg` + `Christmas Party.txt`. (A Google Doc named `Christmas Party` works too.)
+   Without a text file, a photo that has been given a name uses its name as the caption
+   (`Blessing of the Animals 2026.jpg`); camera names (`IMG_1234.jpg`, `PXL_…`, screenshots) show without one.
+3. It appears on the live site within about **5 minutes**. To take a photo down, delete it (and its text file)
+   from the folder. To change a caption, edit or replace the text file.
 
 ## Keep in mind
 

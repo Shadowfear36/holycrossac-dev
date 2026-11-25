@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CrossMark from "@/components/CrossMark";
 import PageHero from "@/components/PageHero";
+import Photo from "@/components/Photo";
 import { alms, givingIntro, lastingGifts, roadmap, tithes, waysToGive } from "@/content/giving";
 import { site } from "@/content/site";
 
@@ -16,15 +17,18 @@ export default function Give() {
         <p className="font-display text-2xl italic leading-relaxed text-ink-soft md:text-3xl">{givingIntro}</p>
       </section>
 
-      {/* Fr. Dave (Nov 2026): the link and QR right at the top; the teaching follows; then the ways to give again */}
+      {/* Fr. Dave (Nov 2026): the giving link right at the top; the teaching follows; then the ways to give again.
+          The QR code is at the bottom, beside Planned Giving. */}
       {site.givingUrl && (
         <section className="mt-14 bg-oxblood text-parchment">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 px-6 py-14 text-center md:flex-row md:justify-center md:text-left">
-            <a href={site.givingUrl} aria-label="Give online" className="shrink-0 bg-white p-2 shadow-lg">
-              {/* QR (scripts/make-giving-qr.mjs) opens the quick-giving page, holycrossac.org/give-now/ */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/giving-qr.svg" alt="QR code for giving to Holy Cross" width={176} height={176} className="h-44 w-44" />
-            </a>
+            {/* Photo: the nave of Holy Cross (public/photos/worship-interior.jpg) */}
+            <Photo
+              name="worship-interior"
+              alt="Inside Holy Cross Anglican Church"
+              hint="Inside the church"
+              className="aspect-[4/3] w-full max-w-sm shrink-0 shadow-lg md:w-80"
+            />
             <div>
               <p className="eyebrow text-gold-light">Give Online</p>
               <p className="mt-3 font-display text-3xl leading-snug md:text-4xl">Once or on a regular schedule, by card or bank.</p>
@@ -34,7 +38,6 @@ export default function Give() {
               >
                 Give online
               </a>
-              <p className="mt-3 text-sm text-parchment/75">Or scan the code with your phone’s camera.</p>
             </div>
           </div>
         </section>
@@ -170,6 +173,26 @@ export default function Give() {
                 <p className="mt-3 leading-relaxed text-ink-soft">{g.text}</p>
               </div>
             ))}
+            {/* Scan to give: fills the space beside Planned Giving */}
+            {site.givingUrl && (
+              <div className="flex flex-col items-center gap-6 bg-oxblood p-8 text-center text-parchment sm:flex-row sm:text-left">
+                <a href={site.givingUrl} aria-label="Give online" className="shrink-0 bg-white p-2 shadow-lg">
+                  {/* QR (scripts/make-giving-qr.mjs) opens the quick-giving page, holycrossac.org/give-now/ */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/giving-qr.svg" alt="QR code for giving to Holy Cross" width={144} height={144} className="h-36 w-36" />
+                </a>
+                <div>
+                  <p className="eyebrow text-gold-light">Give Online</p>
+                  <p className="mt-2 font-display text-2xl leading-snug">Scan the code with your phone’s camera.</p>
+                  <a
+                    href={site.givingUrl}
+                    className="mt-4 inline-block bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider text-ink hover:bg-gold-light"
+                  >
+                    Give online
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
           <p className="mt-12 text-lg">
             To talk about a gift like this, please{" "}
